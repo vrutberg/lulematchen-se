@@ -1,0 +1,7 @@
+<div ng-controller="GameListController as ctrl" ng-init="ctrl.getGames()">
+  <h3>Matcher</h3>
+
+  <div ng-repeat="game in ctrl.games track by game.game_id">
+    {{game.start_date_time}}
+  </div>
+</div>
