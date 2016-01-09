@@ -28,6 +28,6 @@
 
     <servlet-mapping>
         <servlet-name>Jersey REST Service</servlet-name>
-        <url-pattern>/api/*</url-pattern>
+        <url-pattern>/_api/*</url-pattern>
     </servlet-mapping>
 </web-app>

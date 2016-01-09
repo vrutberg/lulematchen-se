@@ -20,9 +20,6 @@ public class ShlApiClient {
         CLIENT_ID = properties.getProperty("clientId");
         CLIENT_SECRET = properties.getProperty("clientSecret");
 
-        System.out.println(CLIENT_ID);
-        System.out.println(CLIENT_SECRET);
-
         api = new ShlApiImpl(API_ROOT_URL);
     }
 
