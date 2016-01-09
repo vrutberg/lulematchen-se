@@ -12,10 +12,7 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import se.lulematchen.api.dao.Game;
-import se.lulematchen.api.dao.GameList;
-import se.lulematchen.api.dao.Season;
-import se.lulematchen.api.dao.TeamId;
+import se.lulematchen.api.dao.*;
 
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
@@ -73,7 +70,9 @@ public class ShlApiImpl implements ShlApi {
     }
 
     public GameList getGames(String accessToken, Season season, TeamId... teamIds) {
-        RequestBuilder requestBuilder = RequestBuilder.get(apiUrl + String.format("/seasons/%s/games", season.valueOf()))
+        String urlString = String.format("/seasons/%s/games", season.valueOf());
+
+        RequestBuilder requestBuilder = RequestBuilder.get(apiUrl + urlString)
                 .addHeader("Authorization", String.format("Bearer %s", accessToken));
 
         if (teamIds != null) {
@@ -100,5 +99,32 @@ public class ShlApiImpl implements ShlApi {
         }
 
         return new GameList(deserializedResponse);
+    }
+
+    @Override
+    public GameInfo getGame(String accessToken, Season season, GameId gameId) {
+        String urlString = String.format("/seasons/%s/games/%s", season.valueOf(), gameId.valueOf());
+
+        RequestBuilder requestBuilder = RequestBuilder.get(apiUrl + urlString)
+                .addHeader("Authorization", String.format("Bearer %s", accessToken));
+
+        HttpUriRequest httpUriRequest = requestBuilder.build();
+
+        GameInfo deserializedResponse = null;
+
+        try {
+            CloseableHttpResponse response = httpClient.execute(httpUriRequest);
+            String responseString = EntityUtils.toString(response.getEntity());
+
+            deserializedResponse = objectMapper.readValue(responseString, GameInfo.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (deserializedResponse == null) {
+            throw new RuntimeException("Got no response, quitting...");
+        }
+
+        return deserializedResponse;
     }
 }

@@ -1,7 +1,7 @@
 package se.lulematchen.api.dao;
 
 public class TeamId {
-    private String teamId;
+    private final String teamId;
 
     private TeamId(String teamId) {
         this.teamId = teamId;

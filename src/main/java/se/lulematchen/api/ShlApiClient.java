@@ -1,9 +1,7 @@
 package se.lulematchen.api;
 
 import se.lulematchen.ApplicationProperties;
-import se.lulematchen.api.dao.GameList;
-import se.lulematchen.api.dao.Season;
-import se.lulematchen.api.dao.TeamId;
+import se.lulematchen.api.dao.*;
 
 public class ShlApiClient {
     private static ShlApiClient instance = null;
@@ -47,5 +45,13 @@ public class ShlApiClient {
         }
 
         return api.getGames(currentAccessToken, season, teamIds);
+    }
+
+    public GameInfo getGame(Season season, GameId gameId) {
+        if (currentAccessToken == null) {
+            renewAccessToken();
+        }
+
+        return api.getGame(currentAccessToken, season, gameId);
     }
 }

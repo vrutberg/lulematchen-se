@@ -7,18 +7,20 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ApplicationDataCache {
     private static ApplicationDataCache instance = null;
 
+    private final String GAMES_KEY = "GAMES";
+
     private ConcurrentHashMap<String, Object> cache = new ConcurrentHashMap<>();
 
     public GameList getGames() {
-        if (!cache.containsKey("GAMES")) {
+        if (!cache.containsKey(GAMES_KEY)) {
             return new GameList();
         }
 
-        return (GameList)cache.get("GAMES");
+        return (GameList)cache.get(GAMES_KEY);
     }
 
     public void putGames(GameList games) {
-        cache.put("GAMES", games);
+        cache.put(GAMES_KEY, games);
     }
 
     public static ApplicationDataCache getInstance() {

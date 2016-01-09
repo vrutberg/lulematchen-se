@@ -1,7 +1,7 @@
 package se.lulematchen.api.dao;
 
 public class Season {
-    private String season;
+    private final String season;
 
     private Season(String season) {
         this.season = season;
