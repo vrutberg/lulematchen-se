@@ -1,5 +1,8 @@
 package se.lulematchen.api.dao;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.time.LocalDateTime;
+
 public class Game {
     private String awayTeamCode;
     private int awayTeamResult;
@@ -9,21 +12,24 @@ public class Game {
     private int gameId;
     private String gameType;
     private String homeTeamCode;
-    private String homeTeamResult;
+    private int homeTeamResult;
     private boolean overTime;
     private boolean penaltyShots;
     private boolean played;
     private int roundNumber;
     private int season;
     private String series;
-    private String startDateTime;
+
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+    private LocalDateTime startDateTime;
+
     private String ticketUrl;
     private String venue;
 
     public Game() {
     }
 
-    public Game(String awayTeamCode, int awayTeamResult, boolean gameCenterActive, String gameCenterUrlDesktop, String gameCenterUrlMobile, int gameId, String gameType, String homeTeamCode, String homeTeamResult, boolean overTime, boolean penaltyShots, boolean played, int roundNumber, int season, String series, String startDateTime, String ticketUrl, String venue) {
+    public Game(String awayTeamCode, int awayTeamResult, boolean gameCenterActive, String gameCenterUrlDesktop, String gameCenterUrlMobile, int gameId, String gameType, String homeTeamCode, int homeTeamResult, boolean overTime, boolean penaltyShots, boolean played, int roundNumber, int season, String series, LocalDateTime startDateTime, String ticketUrl, String venue) {
         this.awayTeamCode = awayTeamCode;
         this.awayTeamResult = awayTeamResult;
         this.gameCenterActive = gameCenterActive;
@@ -108,11 +114,11 @@ public class Game {
         this.homeTeamCode = homeTeamCode;
     }
 
-    public String getHomeTeamResult() {
+    public int getHomeTeamResult() {
         return homeTeamResult;
     }
 
-    public void setHomeTeamResult(String homeTeamResult) {
+    public void setHomeTeamResult(int homeTeamResult) {
         this.homeTeamResult = homeTeamResult;
     }
 
@@ -164,11 +170,11 @@ public class Game {
         this.series = series;
     }
 
-    public String getStartDateTime() {
+    public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
 
-    public void setStartDateTime(String startDateTime) {
+    public void setStartDateTime(LocalDateTime startDateTime) {
         this.startDateTime = startDateTime;
     }
 

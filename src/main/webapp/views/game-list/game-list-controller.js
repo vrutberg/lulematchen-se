@@ -6,7 +6,7 @@ angular.module('app').controller('GameListController', ['ApiService',
 
     vm.getGames = function() {
       ApiService.getGames().then(function(response) {
-        vm.games = response.data.games;
+        vm.games = response.data;
       });
     };
 

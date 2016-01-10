@@ -1,5 +1,6 @@
 package se.lulematchen.api;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -118,7 +119,7 @@ public class ShlApiImpl implements ShlApi {
             CloseableHttpResponse response = makeRequest(request);
             String responseString = EntityUtils.toString(response.getEntity());
 
-            deserializedResponse = objectMapper.readValue(responseString, List.class);
+            deserializedResponse = objectMapper.readValue(responseString, new TypeReference<List<Game>>() {});
         } catch (IOException e) {
             logger.error("Error while getting games", e);
         }
