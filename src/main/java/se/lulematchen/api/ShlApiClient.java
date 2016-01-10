@@ -1,9 +1,13 @@
 package se.lulematchen.api;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se.lulematchen.ApplicationProperties;
 import se.lulematchen.api.dao.*;
 
 public class ShlApiClient {
+    private final Logger logger = LoggerFactory.getLogger(ShlApiClient.class);
+
     private static ShlApiClient instance = null;
 
     private final String API_ROOT_URL = "https://openapi.shl.se";
@@ -32,8 +36,12 @@ public class ShlApiClient {
     }
 
     private void renewAccessToken() {
+        logger.info("Attempting to renew access token...");
+
         AuthenticationResponse authenticationResponse = api.authenticate(CLIENT_ID, CLIENT_SECRET);
         this.currentAccessToken = authenticationResponse.getAccessToken();
+
+        logger.info(String.format("Setting new access token: %s", this.currentAccessToken));
     }
 
     public GameList getGames(Season season, TeamId... teamIds) {
@@ -46,12 +54,12 @@ public class ShlApiClient {
         try {
             games = api.getGames(currentAccessToken, season, teamIds);
         } catch (ExpiredAccessTokenException e) {
-            System.out.println("Token expired, attempting to renew it...");
+            logger.info("Token expired, attempting to renew it...");
             this.renewAccessToken();
 
             try {
                 games = api.getGames(currentAccessToken, season, teamIds);
-                System.out.println("Successfully renewed access token!");
+                logger.info("Successfully renewed access token!");
             } catch (ExpiredAccessTokenException e1) {
                 e1.printStackTrace();
             }
@@ -71,12 +79,12 @@ public class ShlApiClient {
         try {
             game = api.getGame(currentAccessToken, season, gameId);
         } catch (ExpiredAccessTokenException e) {
-            System.out.println("Token expired, attempting to renew it...");
+            logger.info("Token expired, attempting to renew it...");
             this.renewAccessToken();
 
             try {
                 game = api.getGame(currentAccessToken, season, gameId);
-                System.out.println("Successfully renewed access token!");
+                logger.info("Successfully renewed access token!");
             } catch (ExpiredAccessTokenException e1) {
                 e1.printStackTrace();
             }
