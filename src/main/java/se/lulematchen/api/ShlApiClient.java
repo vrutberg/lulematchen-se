@@ -41,7 +41,24 @@ public class ShlApiClient {
             renewAccessToken();
         }
 
-        return api.getGames(currentAccessToken, season, teamIds);
+        GameList games = null;
+
+        try {
+            games = api.getGames(currentAccessToken, season, teamIds);
+        } catch (ExpiredAccessTokenException e) {
+            System.out.println("Token expired, attempting to renew it...");
+            this.renewAccessToken();
+
+            try {
+                games = api.getGames(currentAccessToken, season, teamIds);
+                System.out.println("Successfully renewed access token!");
+            } catch (ExpiredAccessTokenException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        // todo: can be null at this point, return something else or throw an exception?
+        return games;
     }
 
     public GameInfo getGame(Season season, GameId gameId) {
@@ -49,6 +66,23 @@ public class ShlApiClient {
             renewAccessToken();
         }
 
-        return api.getGame(currentAccessToken, season, gameId);
+        GameInfo game = null;
+
+        try {
+            game = api.getGame(currentAccessToken, season, gameId);
+        } catch (ExpiredAccessTokenException e) {
+            System.out.println("Token expired, attempting to renew it...");
+            this.renewAccessToken();
+
+            try {
+                game = api.getGame(currentAccessToken, season, gameId);
+                System.out.println("Successfully renewed access token!");
+            } catch (ExpiredAccessTokenException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        // todo: can be null at this point, return something else or throw an exception?
+        return game;
     }
 }

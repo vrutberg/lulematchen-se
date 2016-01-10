@@ -14,6 +14,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import se.lulematchen.api.dao.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.List;
@@ -69,7 +70,9 @@ public class ShlApiImpl implements ShlApi {
         return deserializedResponse;
     }
 
-    public GameList getGames(String accessToken, Season season, TeamId... teamIds) {
+    public GameList getGames(String accessToken, Season season, TeamId... teamIds)
+        throws ExpiredAccessTokenException
+    {
         String urlString = String.format("/seasons/%s/games", season.valueOf());
 
         RequestBuilder requestBuilder = RequestBuilder.get(apiUrl + urlString)
@@ -87,6 +90,11 @@ public class ShlApiImpl implements ShlApi {
 
         try {
             CloseableHttpResponse response = httpClient.execute(httpUriRequest);
+
+            if (response.getStatusLine().getStatusCode() == HttpServletResponse.SC_FORBIDDEN) {
+                throw new ExpiredAccessTokenException();
+            }
+
             String responseString = EntityUtils.toString(response.getEntity());
 
             deserializedResponse = objectMapper.readValue(responseString, List.class);
@@ -102,7 +110,9 @@ public class ShlApiImpl implements ShlApi {
     }
 
     @Override
-    public GameInfo getGame(String accessToken, Season season, GameId gameId) {
+    public GameInfo getGame(String accessToken, Season season, GameId gameId)
+        throws ExpiredAccessTokenException
+    {
         String urlString = String.format("/seasons/%s/games/%s", season.valueOf(), gameId.valueOf());
 
         RequestBuilder requestBuilder = RequestBuilder.get(apiUrl + urlString)
@@ -114,6 +124,11 @@ public class ShlApiImpl implements ShlApi {
 
         try {
             CloseableHttpResponse response = httpClient.execute(httpUriRequest);
+
+            if (response.getStatusLine().getStatusCode() == HttpServletResponse.SC_FORBIDDEN) {
+                throw new ExpiredAccessTokenException();
+            }
+
             String responseString = EntityUtils.toString(response.getEntity());
 
             deserializedResponse = objectMapper.readValue(responseString, GameInfo.class);
