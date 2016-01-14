@@ -59,12 +59,12 @@ public class RestApiResource {
     @Path("/games/firstUnplayed")
     public Response getFirstUnplayedGame(@PathParam("gameId") String gameId) {
         GameList games = ApplicationDataCache.getInstance().getGames();
-        Game lastPlayedGame = games.getFirstUnplayedGame().get();
+        Game firstUnplayedGame = games.getFirstUnplayedGame().get();
 
-        if (lastPlayedGame == null) {
+        if (firstUnplayedGame == null) {
             return Response.noContent().build();
         }
 
-        return Response.ok(lastPlayedGame).build();
+        return Response.ok(firstUnplayedGame).build();
     }
 }
