@@ -13,6 +13,8 @@
     <!-- Dependencies -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/locale/sv.js"></script>
 
     <!-- App setup -->
     <script src="app.js"></script>
@@ -26,6 +28,8 @@
 
     <!-- Bootstrapping -->
     <script>
+      moment.locale('sv');
+
       angular.element(document).ready(function() {
         angular.bootstrap(document, ['app']);
       });

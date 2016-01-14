@@ -1,3 +1,6 @@
 <div ng-controller="NextGameController as ctrl" ng-init="ctrl.getGame()">
-  {{ctrl.game.startDateTime}}
+  <div ng-show="ctrl.countDownString">
+    <h3>Tid till nästa match: {{ctrl.game.homeTeamCode}} - {{ctrl.game.awayTeamCode}}</h3>
+    <p>{{ctrl.countDownString}}</p>
+  </div>
 </div>
