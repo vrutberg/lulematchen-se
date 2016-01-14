@@ -3,6 +3,8 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
     var vm = this;
 
     vm.game = {};
+    vm.gameDetails = {};
+
     vm.countDownString = undefined;
 
     vm.getCountDown = function(dateTimeString) {
@@ -13,14 +15,16 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
 
       if (difference > 0) {
         var duration = moment.duration(difference);
+        var tmpValue;
 
         if (duration.days() > 0) {
           if (outputString.length > 0) {
             outputString += ", ";
           }
 
-          outputString += duration.days() + " dagar";
-          duration.subtract(duration.days(), 'd');
+          tmpValue = duration.days();
+          outputString += tmpValue + (tmpValue == 1 ? " dag" : " dagar");
+          duration.subtract(tmpValue, 'd');
         }
 
         if (duration.hours() > 0) {
@@ -28,8 +32,9 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
             outputString += ", ";
           }
 
-          outputString += duration.hours() + " timmar";
-          duration.subtract(duration.hours(), 'h');
+          tmpValue = duration.hours();
+          outputString += tmpValue + (tmpValue == 1 ? " timme" : " timmar");
+          duration.subtract(tmpValue, 'h');
         }
 
         if (duration.minutes() > 0) {
@@ -37,8 +42,9 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
             outputString += ", ";
           }
 
-          outputString += duration.minutes() + " minuter";
-          duration.subtract(duration.minutes(), 'm');
+          tmpValue = duration.minutes();
+          outputString += tmpValue + (tmpValue == 1 ? " minut" : " minuter");
+          duration.subtract(tmpValue, 'm');
         }
 
         if (duration.seconds() > 0) {
@@ -46,8 +52,9 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
             outputString += ", ";
           }
 
-          outputString += duration.seconds() + " sekunder";
-          duration.subtract(duration.seconds(), 's');
+          tmpValue = duration.seconds();
+          outputString += tmpValue + (tmpValue == 1 ? " sekund" : " sekunder");
+          duration.subtract(tmpValue, 's');
         }
       }
 
@@ -57,12 +64,16 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
     vm.getGame = function() {
       ApiService.getFirstUnplayedGame().then(function(response) {
         vm.game = response.data;
+      }).then(function() {
+        return ApiService.getGameDetails(vm.game.gameId);
+      }).then(function(response) {
+        vm.gameDetails = response.data;
       });
     };
 
     $interval(function() {
       if (vm.game && vm.game.startDateTime) {
-        vm.countDownString = vm.getCountDown("2016-01-14T22:00:00");
+        vm.countDownString = vm.getCountDown(vm.game.startDateTime);
       }
     }, 1000);
   }]);
