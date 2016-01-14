@@ -53,4 +53,18 @@ public class RestApiResource {
 
         return Response.ok(lastPlayedGame).build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/games/firstUnplayed")
+    public Response getFirstUnplayedGame(@PathParam("gameId") String gameId) {
+        GameList games = ApplicationDataCache.getInstance().getGames();
+        Game lastPlayedGame = games.getFirstUnplayedGame().get();
+
+        if (lastPlayedGame == null) {
+            return Response.noContent().build();
+        }
+
+        return Response.ok(lastPlayedGame).build();
+    }
 }

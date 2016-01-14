@@ -25,4 +25,11 @@ public class GameList {
                 .sorted((o1, o2) -> o2.getStartDateTime().compareTo(o1.getStartDateTime()))
                 .findFirst();
     }
+
+    public Optional<Game> getFirstUnplayedGame() {
+        return games.stream()
+                .filter(game -> !game.isPlayed())
+                .sorted((o1, o2) -> o1.getStartDateTime().compareTo(o2.getStartDateTime()))
+                .findFirst();
+    }
 }
