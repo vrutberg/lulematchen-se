@@ -101,6 +101,8 @@ public class ShlApiImpl implements ShlApi {
     public GameList getGames(String accessToken, Season season, TeamId... teamIds)
         throws ExpiredAccessTokenException
     {
+        logger.info(String.format("Fetching games from api: [Season %s, teamIds %s]", season, teamIds));
+
         String urlString = String.format("/seasons/%s/games", season.valueOf());
 
         RequestBuilder requestBuilder = RequestBuilder.get(apiUrl + urlString)
@@ -135,6 +137,8 @@ public class ShlApiImpl implements ShlApi {
     public GameInfo getGame(String accessToken, Season season, GameId gameId)
         throws ExpiredAccessTokenException
     {
+        logger.info(String.format("Fetching game details from api: [Season %s, GameId %s]", season.valueOf(), gameId.valueOf()));
+
         String urlString = String.format("/seasons/%s/games/%s", season.valueOf(), gameId.valueOf());
 
         RequestBuilder requestBuilder = RequestBuilder.get(apiUrl + urlString)

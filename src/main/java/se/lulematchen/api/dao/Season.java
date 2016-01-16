@@ -18,4 +18,19 @@ public class Season {
     public String valueOf() {
         return season;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Season)) return false;
+
+        Season season1 = (Season) o;
+
+        return season.equals(season1.season);
+    }
+
+    @Override
+    public int hashCode() {
+        return season.hashCode();
+    }
 }

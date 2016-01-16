@@ -1,9 +1,14 @@
 package se.lulematchen.api;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.lulematchen.ApplicationProperties;
 import se.lulematchen.api.dao.*;
+
+import java.util.concurrent.TimeUnit;
 
 public class ShlApiClient {
     private final Logger logger = LoggerFactory.getLogger(ShlApiClient.class);
@@ -17,6 +22,8 @@ public class ShlApiClient {
     private ShlApi api;
     private String currentAccessToken = null;
 
+    private LoadingCache<GameRequest, GameInfo> gameInfoCache;
+
     private ShlApiClient() {
         ApplicationProperties properties = ApplicationProperties.getInstance();
         properties.loadProperties();
@@ -25,6 +32,15 @@ public class ShlApiClient {
         CLIENT_SECRET = properties.getProperty("clientSecret");
 
         api = new ShlApiImpl(API_ROOT_URL);
+
+        gameInfoCache = CacheBuilder.newBuilder()
+                .expireAfterWrite(30, TimeUnit.SECONDS)
+                .build(new CacheLoader<GameRequest, GameInfo>() {
+                    @Override
+                    public GameInfo load(GameRequest gameRequest) throws Exception {
+                        return getGameFromApi(gameRequest);
+                    }
+                });
     }
 
     public static ShlApiClient getInstance() {
@@ -70,6 +86,10 @@ public class ShlApiClient {
     }
 
     public GameInfo getGame(Season season, GameId gameId) {
+        return gameInfoCache.getUnchecked(new GameRequest(season, gameId));
+    }
+
+    private GameInfo getGameFromApi(GameRequest gameRequest) {
         if (currentAccessToken == null) {
             renewAccessToken();
         }
@@ -77,13 +97,13 @@ public class ShlApiClient {
         GameInfo game = null;
 
         try {
-            game = api.getGame(currentAccessToken, season, gameId);
+            game = api.getGame(currentAccessToken, gameRequest.getSeason(), gameRequest.getGameId());
         } catch (ExpiredAccessTokenException e) {
             logger.info("Token expired, attempting to renew it...");
             this.renewAccessToken();
 
             try {
-                game = api.getGame(currentAccessToken, season, gameId);
+                game = api.getGame(currentAccessToken, gameRequest.getSeason(), gameRequest.getGameId());
                 logger.info("Successfully renewed access token!");
             } catch (ExpiredAccessTokenException e1) {
                 e1.printStackTrace();
@@ -92,5 +112,41 @@ public class ShlApiClient {
 
         // todo: can be null at this point, return something else or throw an exception?
         return game;
+    }
+
+    private class GameRequest {
+        private final Season season;
+        private final GameId gameId;
+
+        public GameRequest(Season season, GameId gameId) {
+            this.season = season;
+            this.gameId = gameId;
+        }
+
+        public Season getSeason() {
+            return season;
+        }
+
+        public GameId getGameId() {
+            return gameId;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof GameRequest)) return false;
+
+            GameRequest that = (GameRequest) o;
+
+            if (!season.equals(that.season)) return false;
+            return gameId.equals(that.gameId);
+        }
+
+        @Override
+        public int hashCode() {
+            int result = season.hashCode();
+            result = 31 * result + gameId.hashCode();
+            return result;
+        }
     }
 }
