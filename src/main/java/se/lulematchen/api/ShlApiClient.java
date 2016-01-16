@@ -54,7 +54,16 @@ public class ShlApiClient {
     private void renewAccessToken() {
         logger.info("Attempting to renew access token...");
 
-        AuthenticationResponse authenticationResponse = api.authenticate(CLIENT_ID, CLIENT_SECRET);
+        AuthenticationResponse authenticationResponse = null;
+        try {
+            authenticationResponse = api.authenticate(CLIENT_ID, CLIENT_SECRET);
+        } catch (Exception e) {
+            logger.error("Could not renew access token", e);
+            throw new RuntimeException(e);
+        }
+
+        logger.info("Got response", authenticationResponse);
+
         this.currentAccessToken = authenticationResponse.getAccessToken();
 
         logger.info(String.format("Setting new access token: %s", this.currentAccessToken));

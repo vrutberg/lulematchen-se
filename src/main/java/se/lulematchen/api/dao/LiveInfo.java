@@ -127,4 +127,22 @@ public class LiveInfo {
     public void setStatusString(String statusString) {
         this.statusString = statusString;
     }
+
+    @Override
+    public String toString() {
+        return "LiveInfo{" +
+                "gameTime='" + gameTime + '\'' +
+                ", timePeriod=" + timePeriod +
+                ", gameId=" + gameId +
+                ", period=" + period +
+                ", round=" + round +
+                ", homeTeamCode='" + homeTeamCode + '\'' +
+                ", homeScore=" + homeScore +
+                ", awayTeamCode='" + awayTeamCode + '\'' +
+                ", awayScore=" + awayScore +
+                ", venue='" + venue + '\'' +
+                ", attendance=" + attendance +
+                ", statusString='" + statusString + '\'' +
+                '}';
+    }
 }

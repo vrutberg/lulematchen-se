@@ -220,4 +220,31 @@ public class GameInfo {
     public void setVenue(String venue) {
         this.venue = venue;
     }
+
+    @Override
+    public String toString() {
+        return "GameInfo{" +
+                "live=" + live +
+                ", gameId=" + gameId +
+                ", season=" + season +
+                ", series='" + series + '\'' +
+                ", gameType='" + gameType + '\'' +
+                ", roundNumber=" + roundNumber +
+                ", startDateTime='" + startDateTime + '\'' +
+                ", homeTeamCode='" + homeTeamCode + '\'' +
+                ", homeTeamResult=" + homeTeamResult +
+                ", awayTeamCode='" + awayTeamCode + '\'' +
+                ", awayTeamResult=" + awayTeamResult +
+                ", periodResults='" + periodResults + '\'' +
+                ", gameCenterActive=" + gameCenterActive +
+                ", played=" + played +
+                ", overtime=" + overtime +
+                ", penaltyShots=" + penaltyShots +
+                ", ticketUrl='" + ticketUrl + '\'' +
+                ", gameCenterUrlDesktop='" + gameCenterUrlDesktop + '\'' +
+                ", gameCenterUrlMobile='" + gameCenterUrlMobile + '\'' +
+                ", tvChannels=" + tvChannels +
+                ", venue='" + venue + '\'' +
+                '}';
+    }
 }

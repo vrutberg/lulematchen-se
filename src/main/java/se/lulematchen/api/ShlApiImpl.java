@@ -87,8 +87,10 @@ public class ShlApiImpl implements ShlApi {
             deserializedResponse = objectMapper.readValue(responseString, AuthenticationResponse.class);
         } catch (IOException e) {
             logger.error("Error while authenticating", e);
+            throw new RuntimeException(e);
         } catch (ExpiredAccessTokenException e) {
             logger.error("Token has expired", e);
+            throw new RuntimeException(e);
         }
 
         if (deserializedResponse == null) {

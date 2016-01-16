@@ -14,4 +14,11 @@ public class TeamId {
     public String valueOf() {
         return teamId;
     }
+
+    @Override
+    public String toString() {
+        return "TeamId{" +
+                "teamId='" + teamId + '\'' +
+                '}';
+    }
 }

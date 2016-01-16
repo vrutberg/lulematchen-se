@@ -36,4 +36,13 @@ public class AuthenticationResponse {
     public void setExpiresIn(int expiresIn) {
         this.expiresIn = expiresIn;
     }
+
+    @Override
+    public String toString() {
+        return "AuthenticationResponse{" +
+                "tokenType='" + tokenType + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                ", expiresIn=" + expiresIn +
+                '}';
+    }
 }

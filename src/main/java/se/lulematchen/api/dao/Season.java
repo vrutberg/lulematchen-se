@@ -20,6 +20,13 @@ public class Season {
     }
 
     @Override
+    public String toString() {
+        return "Season{" +
+                "season='" + season + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Season)) return false;

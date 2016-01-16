@@ -32,4 +32,11 @@ public class GameList {
                 .sorted((o1, o2) -> o1.getStartDateTime().compareTo(o2.getStartDateTime()))
                 .findFirst();
     }
+
+    @Override
+    public String toString() {
+        return "GameList{" +
+                "games=" + games +
+                '}';
+    }
 }

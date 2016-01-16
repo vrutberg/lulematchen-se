@@ -193,4 +193,28 @@ public class Game {
     public void setVenue(String venue) {
         this.venue = venue;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "awayTeamCode='" + awayTeamCode + '\'' +
+                ", awayTeamResult=" + awayTeamResult +
+                ", gameCenterActive=" + gameCenterActive +
+                ", gameCenterUrlDesktop='" + gameCenterUrlDesktop + '\'' +
+                ", gameCenterUrlMobile='" + gameCenterUrlMobile + '\'' +
+                ", gameId=" + gameId +
+                ", gameType='" + gameType + '\'' +
+                ", homeTeamCode='" + homeTeamCode + '\'' +
+                ", homeTeamResult=" + homeTeamResult +
+                ", overTime=" + overTime +
+                ", penaltyShots=" + penaltyShots +
+                ", played=" + played +
+                ", roundNumber=" + roundNumber +
+                ", season=" + season +
+                ", series='" + series + '\'' +
+                ", startDateTime=" + startDateTime +
+                ", ticketUrl='" + ticketUrl + '\'' +
+                ", venue='" + venue + '\'' +
+                '}';
+    }
 }
