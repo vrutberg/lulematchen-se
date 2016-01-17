@@ -49,11 +49,13 @@ public class ShlApiImpl implements ShlApi {
         return objectMapper;
     }
 
-    private CloseableHttpResponse makeRequest(HttpUriRequest request)
+    private <T> T makeRequest(HttpUriRequest request, TypeReference<T> typeReference)
             throws ExpiredAccessTokenException, IOException
     {
+        CloseableHttpResponse response = null;
+
         try {
-            CloseableHttpResponse response = httpClient.execute(request);
+            response = httpClient.execute(request);
 
             if (response.getStatusLine().getStatusCode() == HttpServletResponse.SC_FORBIDDEN) {
                 throw new ExpiredAccessTokenException();
@@ -63,10 +65,45 @@ public class ShlApiImpl implements ShlApi {
                 logger.warn("Got unexpected non-200 response", response);
             }
 
-            return response;
+            String responseString = EntityUtils.toString(response.getEntity());
+
+            return objectMapper.readValue(responseString, typeReference);
         } catch (IOException e) {
             logger.error("Error while making HTTP request", e);
             throw e;
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+        }
+    }
+
+    private <T> T makeRequest(HttpUriRequest request, Class<T> clazz)
+            throws ExpiredAccessTokenException, IOException
+    {
+        CloseableHttpResponse response = null;
+
+        try {
+            response = httpClient.execute(request);
+
+            if (response.getStatusLine().getStatusCode() == HttpServletResponse.SC_FORBIDDEN) {
+                throw new ExpiredAccessTokenException();
+            }
+
+            if (response.getStatusLine().getStatusCode() != HttpServletResponse.SC_OK) {
+                logger.warn("Got unexpected non-200 response", response);
+            }
+
+            String responseString = EntityUtils.toString(response.getEntity());
+
+            return objectMapper.readValue(responseString, clazz);
+        } catch (IOException e) {
+            logger.error("Error while making HTTP request", e);
+            throw e;
+        } finally {
+            if (response != null) {
+                response.close();
+            }
         }
     }
 
@@ -78,13 +115,10 @@ public class ShlApiImpl implements ShlApi {
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .build();
 
-        AuthenticationResponse deserializedResponse = null;
+        AuthenticationResponse deserializedResponse;
 
         try {
-            CloseableHttpResponse response = this.makeRequest(request);
-            String responseString = EntityUtils.toString(response.getEntity());
-
-            deserializedResponse = objectMapper.readValue(responseString, AuthenticationResponse.class);
+            deserializedResponse = makeRequest(request, AuthenticationResponse.class);
         } catch (IOException e) {
             logger.error("Error while authenticating", e);
             throw new RuntimeException(e);
@@ -117,19 +151,13 @@ public class ShlApiImpl implements ShlApi {
         }
 
         HttpUriRequest request = requestBuilder.build();
-        List<Game> deserializedResponse = null;
+        List<Game> deserializedResponse;
 
         try {
-            CloseableHttpResponse response = makeRequest(request);
-            String responseString = EntityUtils.toString(response.getEntity());
-
-            deserializedResponse = objectMapper.readValue(responseString, new TypeReference<List<Game>>() {});
+            deserializedResponse = makeRequest(request, new TypeReference<List<Game>>() {});
         } catch (IOException e) {
             logger.error("Error while getting games", e);
-        }
-
-        if (deserializedResponse == null) {
-            throw new RuntimeException("Got no response, quitting...");
+            throw new RuntimeException(e);
         }
 
         return new GameList(deserializedResponse);
@@ -143,24 +171,16 @@ public class ShlApiImpl implements ShlApi {
 
         String urlString = String.format("/seasons/%s/games/%s", season.valueOf(), gameId.valueOf());
 
-        RequestBuilder requestBuilder = RequestBuilder.get(apiUrl + urlString)
-                .addHeader("Authorization", String.format("Bearer %s", accessToken));
+        HttpUriRequest request = RequestBuilder.get(apiUrl + urlString)
+                .addHeader("Authorization", String.format("Bearer %s", accessToken)).build();
 
-        HttpUriRequest httpUriRequest = requestBuilder.build();
-
-        GameInfo deserializedResponse = null;
+        GameInfo deserializedResponse;
 
         try {
-            CloseableHttpResponse response = httpClient.execute(httpUriRequest);
-            String responseString = EntityUtils.toString(response.getEntity());
-
-            deserializedResponse = objectMapper.readValue(responseString, GameInfo.class);
+            deserializedResponse = makeRequest(request, GameInfo.class);
         } catch (IOException e) {
             logger.error("Error while getting single game", e);
-        }
-
-        if (deserializedResponse == null) {
-            throw new RuntimeException("Got no response, quitting...");
+            throw new RuntimeException(e);
         }
 
         return deserializedResponse;
