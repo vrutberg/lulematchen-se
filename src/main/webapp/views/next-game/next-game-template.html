@@ -1,11 +1,11 @@
 <div ng-controller="NextGameController as ctrl" ng-init="ctrl.getGame()">
-  <div ng-show="ctrl.gameDetails.live">
+  <div ng-show="ctrl.game.played || ctrl.gameDetails.live">
     <h3>{{ctrl.game.homeTeamCode}} {{ctrl.gameDetails.live.homeScore}} - {{ctrl.game.awayTeamCode}} {{ctrl.gameDetails.live.awayScore}}</h3>
 
     {{ctrl.gameDetails.live}}
   </div>
 
-  <div ng-show="!ctrl.gameDetails.live && ctrl.countDownString">
+  <div ng-show="!ctrl.game.played">
     <h3>Tid till nästa match: {{ctrl.game.homeTeamCode}} - {{ctrl.game.awayTeamCode}}</h3>
     <p>{{ctrl.countDownString}}</p>
   </div>

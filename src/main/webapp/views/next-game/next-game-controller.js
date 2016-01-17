@@ -7,11 +7,9 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
 
     vm.countDownString = undefined;
 
-    vm.getCountDown = function(dateTimeString) {
+    var getCountdownString = function (from, to) {
       var outputString = "";
-      var now = moment().valueOf();
-      var gameTime = moment(dateTimeString).valueOf();
-      var difference = gameTime - now;
+      var difference = to - from;
 
       if (difference > 0) {
         var duration = moment.duration(difference);
@@ -27,7 +25,7 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
           duration.subtract(tmpValue, 'd');
         }
 
-        if (duration.hours() > 0) {
+        if (!(outputString.length == 0 && duration.hours() > 0)) {
           if (outputString.length > 0) {
             outputString += ", ";
           }
@@ -37,7 +35,7 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
           duration.subtract(tmpValue, 'h');
         }
 
-        if (duration.minutes() > 0) {
+        if (!(outputString.length == 0 && duration.minutes() > 0)) {
           if (outputString.length > 0) {
             outputString += ", ";
           }
@@ -47,24 +45,33 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
           duration.subtract(tmpValue, 'm');
         }
 
-        if (duration.seconds() > 0) {
-          if (outputString.length > 0) {
-            outputString += ", ";
-          }
-
-          tmpValue = duration.seconds();
-          outputString += tmpValue + (tmpValue == 1 ? " sekund" : " sekunder");
-          duration.subtract(tmpValue, 's');
+        if (outputString.length > 0) {
+          outputString += ", ";
         }
+
+        tmpValue = duration.seconds();
+        outputString += tmpValue + (tmpValue == 1 ? " sekund" : " sekunder");
+        duration.subtract(tmpValue, 's');
       }
 
       return outputString;
     };
 
+    vm.updateCountdownString = function(dateTimeString) {
+      vm.countDownString = getCountdownString(moment().valueOf(), moment(dateTimeString).valueOf());
+    };
+
     vm.getGame = function() {
-      ApiService.getFirstUnplayedGame().then(function(response) {
-        vm.game = response.data;
+      ApiService.getTodaysGames().then(function(response) {
+        if (response.data.length > 0) {
+          vm.game = response.data[0];
+        }
+
+        return ApiService.getFirstUnplayedGame().then(function(response) {
+          vm.game = response.data;
+        });
       }).then(function() {
+        vm.updateCountdownString(vm.game.startDateTime);
         return ApiService.getGameDetails(vm.game.gameId);
       }).then(function(response) {
         vm.gameDetails = response.data;
@@ -72,8 +79,8 @@ angular.module('app').controller('NextGameController', ['ApiService', '$interval
     };
 
     $interval(function() {
-      if (vm.game && vm.game.startDateTime) {
-        vm.countDownString = vm.getCountDown(vm.game.startDateTime);
+      if (!vm.game.played) {
+        vm.updateCountdownString(vm.game.startDateTime);
       }
     }, 1000);
   }]);

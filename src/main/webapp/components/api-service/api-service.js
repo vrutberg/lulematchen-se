@@ -14,6 +14,10 @@ angular.module('app').factory('ApiService', ['$http', function($http) {
 
     getGameDetails: function(gameId) {
       return $http.get('_api/games/' + gameId + '/details');
+    },
+
+    getTodaysGames: function() {
+      return $http.get('_api/games/todaysGames');
     }
   };
 }]);
