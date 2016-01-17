@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDate;
+import java.util.List;
 
 @Path("/")
 public class RestApiResource {
@@ -66,5 +68,19 @@ public class RestApiResource {
         }
 
         return Response.ok(firstUnplayedGame).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/games/todaysGames")
+    public Response getTodaysGames() {
+        GameList games = ApplicationDataCache.getInstance().getGames();
+        List<Game> todaysGames = games.getGamesByDate(LocalDate.now());
+
+        if (todaysGames == null) {
+            return Response.noContent().build();
+        }
+
+        return Response.ok(todaysGames).build();
     }
 }

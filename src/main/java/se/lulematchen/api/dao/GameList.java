@@ -1,8 +1,10 @@
 package se.lulematchen.api.dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class GameList {
     private final List<Game> games;
@@ -31,6 +33,12 @@ public class GameList {
                 .filter(game -> !game.isPlayed())
                 .sorted((o1, o2) -> o1.getStartDateTime().compareTo(o2.getStartDateTime()))
                 .findFirst();
+    }
+
+    public List<Game> getGamesByDate(LocalDate date) {
+        return games.stream()
+                .filter(game -> game.getStartDateTime().toLocalDate().equals(LocalDate.now()))
+                .collect(Collectors.toList());
     }
 
     @Override
