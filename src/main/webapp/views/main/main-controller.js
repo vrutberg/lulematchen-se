@@ -1,4 +1,4 @@
-angular.module('app').controller('NextGameController', ['ApiService', '$interval',
+angular.module('app').controller('MainController', ['ApiService', '$interval',
   function(ApiService, $interval) {
     var vm = this;
 
