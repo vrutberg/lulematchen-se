@@ -1,17 +1,9 @@
-<div ng-controller="MainController as ctrl" ng-init="ctrl.getGame()">
-  <div ng-show="ctrl.game.played || ctrl.gameDetails.live">
-    <h3>{{ctrl.game.homeTeamCode}} {{ctrl.gameDetails.live.homeScore}} - {{ctrl.game.awayTeamCode}} {{ctrl.gameDetails.live.awayScore}}</h3>
-
-    {{ctrl.gameDetails.live}}
+<div ng-controller="MainController as ctrl" ng-init="ctrl.init()">
+  <div ng-if="ctrl.game && ctrl.hasGameStarted">
+    <div current-game game="ctrl.game"></div>
   </div>
 
-  <div ng-show="!ctrl.game.played">
-    <div class="team-logos">
-      <img class="team-logo" ng-src="images/team-logos/{{ctrl.game.homeTeamCode | lowercase}}/logo.jpg">
-      VS.
-      <img class="team-logo" ng-src="images/team-logos/{{ctrl.game.awayTeamCode | lowercase}}/logo.jpg">
-    </div>
-
-    <p>{{ctrl.countDownString}}</p>
+  <div ng-if="ctrl.game && !ctrl.hasGameStarted">
+    <div next-game game="ctrl.game"></div>
   </div>
 </div>

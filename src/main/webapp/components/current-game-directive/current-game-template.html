@@ -1,0 +1,30 @@
+<div ng-show="!isLoading">
+  <h2>{{game.venue}}</h2>
+  <h3>{{dateString}} / SHL grundserien / Omgång {{game.roundNumber}}</h3>
+
+  <div class="team-logos">
+    <team-logo team-code="game.homeTeamCode"></team-logo>
+    VS.
+    <team-logo team-code="game.awayTeamCode"></team-logo>
+  </div>
+
+  <h3>
+    Home
+    <strong>{{homeScore}}</strong>
+    -
+    Away
+    <strong>{{awayScore}}</strong>
+  </h3>
+
+  <div ng-if="!game.played">
+    <h3 ng-if="!game.played">
+      Matchen pågår
+    </h3>
+
+    <p>Period {{gameDetails.live.period}} - {{currentGameTime.minutes}}:{{currentGameTime.seconds}}</p>
+  </div>
+
+  <h3 ng-if="game.played">Matchen färdigspelad</h3>
+</div>
+
+<h3 ng-show="isLoading">Laddar livedata...</h3>
