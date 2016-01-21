@@ -14,11 +14,12 @@ public class GameFetcher implements Runnable {
         ShlApiClient client = ShlApiClient.getInstance();
         ApplicationDataCache data = ApplicationDataCache.getInstance();
 
-        GameList games = client.getGames(Season.fromInt(2015), TeamId.fromString("LHF"));
-
-        if (games != null) {
+        try {
+            GameList games = client.getGames(Season.fromInt(2015), TeamId.fromString("LHF"));
             logger.info(String.format("Received %d games", games.getGames().size()));
             data.putGames(games);
+        } catch (Exception e) {
+            logger.error("Received error while updating list of games", e);
         }
     }
 }
