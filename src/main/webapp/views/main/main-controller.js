@@ -15,7 +15,10 @@ angular.module('app').controller('MainController', ['ApiService', '$interval',
     vm.getGame = function() {
       return ApiService.getTodaysGames().then(function(response) {
         if (response.data.length > 0) {
-          return response.data[0];
+          // if-clause added for test
+          if (window.location.href.indexOf("showNextGame") === -1) {
+            return response.data[0];
+          }
         }
 
         return ApiService.getFirstUnplayedGame().then(function(response) {
@@ -27,6 +30,11 @@ angular.module('app').controller('MainController', ['ApiService', '$interval',
     vm.init = function() {
       vm.getGame().then(function(game) {
         vm.game = game;
+
+        if (window.location.href.indexOf("forceLive") !== -1) {
+          vm.game.played = false;
+        }
+
         vm.hasGameStarted = vm.isBeforeNow(vm.game.startDateTime);
       });
     };
