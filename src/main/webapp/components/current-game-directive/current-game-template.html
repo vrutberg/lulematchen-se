@@ -8,23 +8,70 @@
     <team-logo team-code="game.awayTeamCode"></team-logo>
   </div>
 
-  <h3>
-    Home
-    <strong>{{homeScore}}</strong>
-    -
-    Away
-    <strong>{{awayScore}}</strong>
-  </h3>
-
-  <div ng-if="!game.played">
-    <h3 ng-if="!game.played">
-      Matchen pågår
-    </h3>
-
-    <p>Period {{gameDetails.live.period}} - {{currentGameTime.minutes}}:{{currentGameTime.seconds}}</p>
+  <div class="pwrapper dblock">
+    <div class="jumbotron p">
+      <div class="jumbotron-inner">
+        <div class="home">
+          <div class="team-heading">
+            Home
+          </div>
+          <div class="score blink_me">
+            <!-- får klassen blink_me när det har gjorts mål, ta bort klassen efter 5s-10s? -->
+            {{homeScore}}
+          </div>
+        </div>
+        <div class="time-period">
+          <div class="time">
+            <span>
+              <!-- 00:00 till 20:00 -->
+              {{currentGameTime.minutes}}:{{currentGameTime.seconds}}
+            </span>
+          </div>
+          <div class="period-status">
+            <div class="period-heading">
+              Period
+            </div>
+            <div class="period-data">
+              <!-- 1, 2, 3, OT, SO -->
+              {{gameDetails.live.period}}
+            </div>
+          </div>
+        </div>
+        <div class="guest">
+          <div class="team-heading">
+            Guest
+          </div>
+          <div class="score">
+            {{awayScore}}
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="game-status" ng-class="{ 'green': !game.played, 'red': game.played }">
+          <!-- byts till klassen red när matchen är slut, "Matchen är slut" -->
+          Matchen pågår
+        </div>
+      </div>
+    </div>
   </div>
 
-  <h3 ng-if="game.played">Matchen färdigspelad</h3>
+
+  <!--<h3>-->
+    <!--Home-->
+    <!--<strong>{{homeScore}}</strong>-->
+    <!-&#45;&#45;-->
+    <!--Away-->
+    <!--<strong>{{awayScore}}</strong>-->
+  <!--</h3>-->
+
+  <!--<div ng-if="!game.played">-->
+    <!--<h3 ng-if="!game.played">-->
+      <!--Matchen pågår-->
+    <!--</h3>-->
+
+    <!--<p>Period {{gameDetails.live.period}} - {{currentGameTime.minutes}}:{{currentGameTime.seconds}}</p>-->
+  <!--</div>-->
+
+  <!--<h3 ng-if="game.played">Matchen färdigspelad</h3>-->
 </div>
 
 <h3 ng-show="isLoading">Laddar livedata...</h3>

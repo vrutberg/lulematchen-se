@@ -1,3 +1,56 @@
+/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
 .container-jumbotron-outer {
     background-image: url("../images/site-images/luleablur.jpg");
     background-size: cover;
@@ -11,10 +64,113 @@
     color: #fff;
 }
 
-.team-logos {
+.team-logo {
+    height: 100px;
+}
+
+/* jumbotron */
+
+.jumbotron {
+    margin: 0 auto;
+    align-items: center;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    background-size: cover;
+    background-image: url(http://lulematchen.se/jumbotron-bg2.jpg);
+    padding: 50px 0 40px 0;
+}
+
+.jumbotron-inner {
+    font-family: 'ds-digitalnormal', Arial, sans-serif;
+    text-align: center;
+    width: 100%;
+}
+
+.home {
+    width: 33%;
+    float: left;
+}
+
+.time-period {
+    width: 34%;
+    float: left;
+}
+
+.guest {
+    width: 33%;
+    float: left;
+}
+
+.team-heading {
+    font-size: 6em;
+    text-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 5px #fff, 0 0 20px #fff;
+}
+
+.score {
+    color: #E23844;
+    font-size: 7em;
+    text-shadow: 0 0 1px #E23844, 0 0 3px #E23844, 0 0 5px #E23844, 0 0 20px #E23844;
+    line-height: 1em;
+}
+
+.time-period {
 
 }
 
-.team-logo {
-    height: 100px;
+.time {
+    color: #FAA61A;
+    font-size: 8em;
+    text-shadow: 0 0 1px #FAA61A, 0 0 3px #FAA61A, 0 0 5px #FAA61A, 0 0 20px #FAA61A;
+    line-height: 1.15em;
+}
+
+.time > span {
+    /*    border: 5px solid rgba(255, 255, 255, 0.75); */
+    padding: 5px 10px;
+}
+
+.period-status {
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.period-heading {
+    font-size: 3em;
+    display: inline-block;
+    margin-right: 15px;
+    text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff;
+}
+
+.period-data {
+    color: #FAA61A;
+    font-size: 5em;
+    display: inline-block;
+    text-shadow: 0 0 1px #FAA61A, 0 0 3px #FAA61A, 0 0 5px #FAA61A, 0 0 20px #FAA61A;
+}
+
+.team-heading,
+.period-heading {
+    color: white;
+}
+
+.game-status {
+    font-size: 1.8em;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+
+.green {
+    color: #00C001;
+    text-shadow: 0 0 1px #00c001, 0 0 15px #00c001;
+}
+
+.red {
+    color: #e23844;
+    text-shadow: 0 0 1px #e23844, 0 0 1px #e23844;
 }
