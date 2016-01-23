@@ -1,9 +1,12 @@
-<div ng-controller="MainController as ctrl" ng-init="ctrl.init()">
-  <div ng-if="ctrl.game && ctrl.hasGameStarted">
-    <div current-game game="ctrl.game"></div>
-  </div>
+<div class="container-jumbotron-outer">
+  <div ng-controller="MainController as ctrl" ng-init="ctrl.init()">
+    <div ng-if="ctrl.game && ctrl.hasGameStarted">
+      <div current-game game="ctrl.game"></div>
+    </div>
 
-  <div ng-if="ctrl.game && !ctrl.hasGameStarted">
-    <div next-game game="ctrl.game"></div>
+    <div ng-if="ctrl.game && !ctrl.hasGameStarted">
+      <div next-game game="ctrl.game"></div>
+    </div>
   </div>
 </div>
+
