@@ -10,8 +10,8 @@ angular.module('app').directive('currentGame', ['ApiService', '$interval', funct
       $scope.dateString = _.capitalize(moment($scope.game.startDateTime)
         .format('dddd D MMMM YYYY - HH:mm'));
 
-      $scope.homeScore = $scope.game.homeTeamResult;
-      $scope.awayScore = $scope.game.awayTeamResult;
+      $scope.homeScore = -1;
+      $scope.awayScore = -1;
 
       var parseTimePeriod = function(timePeriod) {
         return {
@@ -32,13 +32,13 @@ angular.module('app').directive('currentGame', ['ApiService', '$interval', funct
       };
 
       $scope.$watch('homeScore', function(newValue, oldValue) {
-        if (newValue !== oldValue) {
+        if (oldValue !== -1 && newValue !== oldValue) {
           console.log('homeScore changed from', oldValue, 'to', newValue);
         }
       });
 
       $scope.$watch('awayScore', function(newValue, oldValue) {
-        if (newValue !== oldValue) {
+        if (oldValue !== -1 && newValue !== oldValue) {
           console.log('awayScore changed from', oldValue, 'to', newValue);
         }
       });
