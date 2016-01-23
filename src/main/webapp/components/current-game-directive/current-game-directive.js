@@ -15,8 +15,8 @@ angular.module('app').directive('currentGame', ['ApiService', '$interval', funct
 
       var parseTimePeriod = function(timePeriod) {
         return {
-          minutes: _.pad(Math.floor(timePeriod / 60), 2, '0'),
-          seconds: _.pad(timePeriod % 60, 2, '0')
+          minutes: _.padStart(Math.floor(timePeriod / 60), 2, '0'),
+          seconds: _.padStart(timePeriod % 60, 2, '0')
         };
       };
 
