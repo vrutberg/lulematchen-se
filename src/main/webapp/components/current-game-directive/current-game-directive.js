@@ -20,14 +20,28 @@ angular.module('app').directive('currentGame', ['ApiService', '$interval', funct
         };
       };
 
-      var updateDetails = function(gameId, skipLoading) {
+      var updateDetails = function(gameId) {
         return ApiService.getGameDetails(gameId).then(function (response) {
           $scope.gameDetails = response.data;
-          $scope.isLoading = false;
+
+          $scope.homeScore = $scope.gameDetails.live.homeScore;
+          $scope.awayScore = $scope.gameDetails.live.awayScore;
 
           $scope.currentGameTime = parseTimePeriod($scope.gameDetails.live.timePeriod);
         });
       };
+
+      $scope.$watch('homeScore', function(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          console.log('homeScore changed from', oldValue, 'to', newValue);
+        }
+      });
+
+      $scope.$watch('awayScore', function(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          console.log('awayScore changed from', oldValue, 'to', newValue);
+        }
+      });
 
       if (!$scope.game.played) {
         $interval(function() {
