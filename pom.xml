@@ -93,6 +93,14 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.3.6.v20151106</version>
+                <configuration>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>log4j.configuration</name>
+                            <value>log4j-local.properties</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
             </plugin>
 
             <plugin>
