@@ -8,7 +8,7 @@ angular.module('app').directive('currentGame', ['ApiService', '$interval', funct
     controller: ['$scope', function($scope) {
       $scope.isLoading = false;
       $scope.dateString = _.capitalize(moment($scope.game.startDateTime)
-        .format('dddd D MMMM YYYY - HH:mm'));
+        .format('dddd, D MMMM YYYY - HH:mm'));
 
       $scope.homeScore = -1;
       $scope.awayScore = -1;

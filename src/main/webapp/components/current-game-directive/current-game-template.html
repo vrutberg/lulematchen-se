@@ -4,7 +4,6 @@
     <div class="game-metadata p">
       <h1 class="game-venue normal-game-venue">{{game.venue}}<!-- , Stad --></h1>
       <!--<h1 class="game-venue retro-game-venue">Delfinen, Luleå</h1>-->
-      <!--<h2 class="game-date">Tisdag, 14 januari 2016 &ndash; 19:00</h2>-->
       <h2 class="game-date">{{dateString}}</h2>
       <h2 class="game-info">SHL grundserien</h2>
       <h2 class="game-round">Omgång {{game.roundNumber}}</h2>
@@ -39,7 +38,7 @@
           <div class="team-heading">
             Home
           </div>
-          <div class="score blink_me">
+          <div class="score">
             <!-- får klassen blink_me när det har gjorts mål, ta bort klassen efter 5s-10s? -->
             {{homeScore}}
           </div>

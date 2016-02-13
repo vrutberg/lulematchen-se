@@ -207,10 +207,9 @@ html {
     max-width: 1200px;
     min-width: 1200px;
     position: relative;
-    padding-right: 0px;
-    padding-left: 0px;
+    padding-right: 0;
+    padding-left: 0;
     width: 100%;
-    position: relative;
     margin: 0 auto;
 }
 
