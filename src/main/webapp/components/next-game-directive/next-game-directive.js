@@ -8,7 +8,7 @@ angular.module('app').directive('nextGame', function(ApiService, $interval) {
     controller: ['$scope', function($scope) {
 
       $scope.dateString = _.capitalize(moment($scope.game.startDateTime)
-        .format('dddd D MMMM YYYY - HH:mm'));
+        .format('dddd, D MMMM YYYY - HH:mm'));
 
       $scope.gameTimeUnixEpoch = moment($scope.game.startDateTime).valueOf();
       $scope.nowAsEpoch = moment().valueOf();
