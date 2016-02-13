@@ -2,7 +2,9 @@ angular.module('app').directive('hamburgerMenu', function(ApiService, $interval)
   return {
     templateUrl: 'components/hamburger-menu-directive/hamburger-menu-template.html',
 
-    controller: ['$scope', function($scope) {
+    link: function() {
+      $('body').addClass('drawer drawer--right');
+
       $('.drawer').drawer({
         iscroll: {
           // Configuring the iScroll
@@ -12,7 +14,6 @@ angular.module('app').directive('hamburgerMenu', function(ApiService, $interval)
         },
         showOverlay: true
       });
-
-    }]
+    }
   };
 });
