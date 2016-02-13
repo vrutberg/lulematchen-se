@@ -6,6 +6,9 @@ angular.module('app').directive('currentGame', ['ApiService', '$interval', funct
     },
 
     controller: ['$scope', function($scope) {
+      // TODO: do this in a more angular way
+      $('html').removeClass('html-cover-up').addClass('html-game-is-on');
+
       $scope.isLoading = false;
       $scope.dateString = _.capitalize(moment($scope.game.startDateTime)
         .format('dddd, D MMMM YYYY - HH:mm'));
