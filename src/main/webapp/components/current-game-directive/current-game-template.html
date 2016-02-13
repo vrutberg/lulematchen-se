@@ -1,11 +1,35 @@
 <div ng-show="!isLoading">
-  <h2>{{game.venue}}</h2>
-  <h3>{{dateString}} / SHL grundserien / Omgång {{game.roundNumber}}</h3>
 
-  <div class="team-logos">
-    <team-logo team-code="game.homeTeamCode"></team-logo>
-    VS.
-    <team-logo team-code="game.awayTeamCode"></team-logo>
+  <div class="pwrapper">
+    <div class="game-metadata p">
+      <h1 class="game-venue normal-game-venue">{{game.venue}}<!-- , Stad --></h1>
+      <!--<h1 class="game-venue retro-game-venue">Delfinen, Luleå</h1>-->
+      <!--<h2 class="game-date">Tisdag, 14 januari 2016 &ndash; 19:00</h2>-->
+      <h2 class="game-date">{{dateString}}</h2>
+      <h2 class="game-info">SHL grundserien</h2>
+      <h2 class="game-round">Omgång {{game.roundNumber}}</h2>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="pwrapper dblock">
+    <div class="game-matchup p">
+      <div class="team-home svg-container shake-trigger left">
+        <div class="shake-slow">
+          <team-logo team-code="game.homeTeamCode"></team-logo>
+        </div>
+      </div>
+
+      <div class="versus left">
+        vs.
+      </div>
+
+      <div class="team-away svg-container shake-trigger left">
+        <div class="shake-little">
+          <team-logo team-code="game.awayTeamCode"></team-logo>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="pwrapper dblock">
@@ -47,31 +71,14 @@
         </div>
         <div class="clearfix"></div>
         <div class="game-status" ng-class="{ 'green': !game.played, 'red': game.played }">
+          <!-- när spelet är aktivt, klass green, "Matchen pågår" -->
+          <!-- byts till klassen yellow när det är paus, "Paus" -->
           <!-- byts till klassen red när matchen är slut, "Matchen är slut" -->
           Matchen pågår
         </div>
       </div>
     </div>
   </div>
-
-
-  <!--<h3>-->
-    <!--Home-->
-    <!--<strong>{{homeScore}}</strong>-->
-    <!-&#45;&#45;-->
-    <!--Away-->
-    <!--<strong>{{awayScore}}</strong>-->
-  <!--</h3>-->
-
-  <!--<div ng-if="!game.played">-->
-    <!--<h3 ng-if="!game.played">-->
-      <!--Matchen pågår-->
-    <!--</h3>-->
-
-    <!--<p>Period {{gameDetails.live.period}} - {{currentGameTime.minutes}}:{{currentGameTime.seconds}}</p>-->
-  <!--</div>-->
-
-  <!--<h3 ng-if="game.played">Matchen färdigspelad</h3>-->
 </div>
 
 <h3 ng-show="isLoading">Laddar livedata...</h3>

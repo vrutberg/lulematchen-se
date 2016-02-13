@@ -1,0 +1,941 @@
+/*
+  .svg-container {
+    border: 1px solid green;
+  }
+
+  .svg-container > div > svg {
+    border: 1px solid white;
+  }
+*/
+
+/*
+.svgcontainer {
+  border: 1px solid white;
+}
+
+.svgcontainer svg {
+  border: 1px solid green;
+}
+*/
+
+/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.lulebo {
+    display: none;
+}
+
+.lulebo div {
+  display: inline-block;
+  position: relative;
+  right: 10px;
+  top: 8px;
+  width: 30px;
+  height: 30px;
+  float: right;
+}
+
+.lulebo div svg {
+    width: 100%;
+    height: 100%;
+}
+
+html.no-autoplay.mobile .audio-autoplay,
+html.no-autoplay.phone .audio-autoplay,
+html.no-autoplay.tablet .audio-autoplay,
+html.no-autoplay.mobilegradea .audio-autoplay
+{
+    display: none !important;
+}
+
+.facebook-share {
+    position: fixed;
+    z-index: 104;
+    width: 48px;
+    height: 48px;
+    top: 0;
+    left: 0;
+}
+
+.facebook-under {
+    position: fixed;
+    z-index: 103;
+    width: 48px;
+    height: 48px;
+    top: 0;
+    left: 0;
+}
+
+.facebook-share svg,
+.facebook-under svg
+ {
+    height: 100%;
+    width: 100%;
+}
+
+.facebook-share a {
+    text-decoration: none !important;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;    
+}
+
+.facebook-share a:hover {
+    opacity: 0;
+    transition: all 0.5s ease-in-out;    
+}
+
+html.thisisamobile .thisischecked {
+    display: none;
+}
+
+html.no-thisisamobile .no-thisischecked {
+    display: none;
+}
+
+.drawer-hamburger {
+    padding: 12px 0.75rem 22px !important;
+    background: #8D8D8C !important;
+    animation: spin 0.5s 3s 1 ease-in-out;    
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.drawer-nav {
+    height: auto !important;
+}
+
+.drawer-brand {
+  font-size: 1rem !important;
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;  
+  line-height: 48px !important;
+  height: 48px;
+}
+
+.drawer-menu {
+
+}
+
+.drawer-menu li:last-child {
+    border-top: 0 !important;
+}
+
+.drawer-menu li {
+    background: #8D8D8C !important;
+    border-top: 0 !important;
+    border-bottom: 1px solid #555;
+    min-height: 47px;
+}
+
+.drawer-menu li a {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #000 !important;
+    text-transform: uppercase;
+}
+
+.drawer-hamburger-icon, .drawer-hamburger-icon::after, .drawer-hamburger-icon::before {
+    height: 4px !important;
+}
+
+.drawer-hamburger-icon {
+    background: #ed1c24 !important;
+}
+
+.drawer-hamburger-icon::after {
+    background: #ffd520 !important;
+}
+
+.drawer-hamburger-icon::before {
+    background: #000 !important;
+}
+
+/* red #ed1c24 */
+/* yellow #ffd520 */
+/* black #000 */
+
+.drawer--right.drawer-open .drawer-hamburger {
+    right: 0 !important;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* WRAPPER */
+.p {
+    max-width: 1200px;
+    min-width: 1200px;
+    position: relative;
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.wrapper {
+    padding-top: 72px;
+}
+
+.w {
+  width: 100%;
+}
+
+header {
+  background: #353535;
+  padding: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    color: white;
+    background: black;
+    height: 50px;
+}
+
+/* full page event */
+
+.wewon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999 !important;
+    opacity: 1;
+    pointer-events: none !important;
+}
+
+.wewon > div {
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+    overflow: hidden;
+}
+
+.snowfall-flakes {
+    overflow: hidden !important;
+}
+
+.fullpageevent {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../img/general/background_ice.jpg");
+    background-size: cover;
+    z-index: 9999 !important;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    transform: scale(0,0);  
+}
+
+
+
+.fullpageeventshow {
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+    transform: scale(1,1);
+}
+
+.fullpageeventhide {
+
+}
+
+.eventcontainer {
+    padding: 50px;
+    background-image: url("../img/general/jumbotron-bg2.jpg");
+    background-size: cover;
+    color: white;
+    -js-display: flex;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;    
+}
+
+.svgcontainer {
+    width: 50%;
+    text-align: center;
+}
+
+.svgcontainer svg {
+    width: 50%;
+    height: 50%;
+/*    min-height: 50%; */
+    margin: 0 auto;
+}
+
+.eventtext {
+    font-family: 'highvoltage_roughregular',Arial,sans-serif;
+    font-size: 7em;   
+    text-transform: uppercase;
+    width: 50%;
+    text-align: center;
+}
+
+/* */
+
+
+/* sections */
+
+.cover-up {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../img/general/background_ice.jpg");
+    background-size: cover;
+/*    z-index: 999 !important; */
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-up-inner {
+    padding: 50px;
+    background-image: url("../img/general/jumbotron-bg2.jpg");
+    background-size: cover;
+    color: white;
+}
+
+.next-game-text {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.next-game-counter {
+    font-family: 'highvoltage_roughregular',Arial,sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 3.4em;
+    padding: 15px 0 0 0;
+}
+
+.next-game-request {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: bold;
+    padding-top: 25px;
+    font-style: italic;
+}
+
+.next-game-teams {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.next-game-date {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-align: center;
+}
+
+
+
+.container-jumbotron-outer {
+    background-image: url("../img/general/luleablur.jpg"); 
+    background-size: cover;
+    height: 100vh;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    padding: 25px 0;
+}
+
+
+/* current results box */
+.game-matchup {
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+}
+
+.versus {
+    color: white;
+    text-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 5px #fff, 0 0 20px #fff;  
+    font-size: 5em;
+    width: 34%;
+    text-align: center;  
+
+}
+
+.jumbotron {
+    margin: 0 auto;
+    align-items: center;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    background-size: cover;
+    background-image: url("../img/general/jumbotron-bg2.jpg");
+    padding: 50px 0 40px 0;
+}
+
+.jumbotron-inner {
+    font-family: 'ds-digitalnormal', Arial, sans-serif;
+    text-align: center;
+    width: 100%;
+}
+
+.home {
+    width: 33%;
+    float: left;
+}
+
+.time-period {
+    width: 34%;
+    float: left;
+}
+
+.guest {
+    width: 33%;
+    float: left;
+}
+
+.team-heading {
+    font-size: 6em;
+    text-shadow: 0 0 1px #fff, 0 0 3px #fff, 0 0 5px #fff, 0 0 20px #fff;       
+}
+
+.score {
+    color: #E23844;
+    font-size: 7em;
+    text-shadow: 0 0 1px #E23844, 0 0 3px #E23844, 0 0 5px #E23844, 0 0 20px #E23844;
+    line-height: 1em;     
+}
+
+.time-period {
+
+}
+
+.time {
+    color: #FAA61A;
+    font-size: 8em;
+    text-shadow: 0 0 1px #FAA61A, 0 0 3px #FAA61A, 0 0 5px #FAA61A, 0 0 20px #FAA61A;    
+    line-height: 1.15em;
+}
+
+.time > span {
+/*    border: 5px solid rgba(255, 255, 255, 0.75); */
+    padding: 5px 10px;
+}
+
+.period-status {
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.period-heading {
+    font-size: 3em;
+    display: inline-block;
+    margin-right: 15px;
+    text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff;       
+}
+
+.period-data {
+    color: #FAA61A;
+    font-size: 5em;
+    display: inline-block;
+    text-shadow: 0 0 1px #FAA61A, 0 0 3px #FAA61A, 0 0 5px #FAA61A, 0 0 20px #FAA61A;         
+}
+
+.team-heading,
+.period-heading {
+    color: white;      
+}
+
+/* */
+
+.svg-container > div > svg {
+    margin: 0 auto;
+    -js-display: flex;
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    max-height: 250px;   
+    min-height: 250px;
+/*    min-width: 400px; */
+    text-align: center;     
+}
+
+.svg-container {
+
+}
+
+.team-home {
+    width: 33%;
+}
+
+.team-away {
+    width: 33%;
+}
+
+.cover-up .team-home,
+.cover-up .team-away
+{
+    width: 38%;
+}
+
+.cover-up .versus {
+    width: 24%;
+}
+
+#lhfwhite,
+#lhfretro {
+    display: none;
+}
+
+.game-metadata {
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    padding-bottom: 0;
+}
+
+.game-date,
+.game-info,
+.game-round {
+    display: inline-block;
+    font-size: 1.2em;
+    font-style: italic;
+    margin: 0;
+}
+
+.game-date::after,
+.game-info::after {
+    content: "\00a0\00a0/\00a0";
+}
+
+.game-venue {
+    margin: 0;
+}
+
+/* RETRO MODE */
+/*.normal-game-venue,*/
+/*.retro-game-venue {*/
+    /*display: none;*/
+/*}*/
+
+
+.attendance {
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 0 0 1px #fff, 0 0 15px #fff;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+}
+
+.game-status {
+    font-size: 1.8em;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+
+.green {
+    color: #00C001;
+    text-shadow: 0 0 1px #00c001, 0 0 15px #00c001;    
+}
+
+.red {
+    color: #e23844;
+    text-shadow: 0 0 1px #e23844, 0 0 1px #e23844;      
+}
+
+.yellow {
+    color: gold;
+    text-shadow: 0 0 1px gold, 0 0 15px #00c001;    
+}
+
+
+/* red #ed1c24 */
+/* yellow #ffd520 */
+/* black #000 */
+
+
+.blink_me {
+  animation: blinker 0.85s linear infinite;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0.0; }
+}
+
+/* override shake */
+
+.shake, .shake-little, .shake-slow, .shake-hard, .shake-horizontal, .shake-vertical, .shake-rotate, .shake-opacity, .shake-crazy, .shake-chunk {
+    display: block !important;
+}
+
+/* switch */
+
+    .onoffswitchretro {
+        position: relative; width: 62px;
+        -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+       display: inline-block;
+        float: right;
+        top: 5px;
+        right: 10px;        
+    }
+    .onoffswitch-checkboxretro {
+        display: none;
+    }
+    .onoffswitch-labelretro {
+        display: block; overflow: hidden; cursor: pointer;
+        height: 36px; padding: 0; line-height: 36px;
+        border: 2px solid #CCCCCC; border-radius: 36px;
+        background-color: #FFFFFF;
+        transition: background-color 0.3s ease-in;
+    }
+    .onoffswitch-labelretro:before {
+        content: "";
+        display: block; width: 36px; margin: 0px;
+        background: #FFFFFF;
+        position: absolute; top: 0; bottom: 0;
+        right: 24px;
+        border: 2px solid #CCCCCC; border-radius: 36px;
+        transition: all 0.3s ease-in 0s; 
+    }
+    .onoffswitch-checkboxretro:checked + .onoffswitch-labelretro {
+        background-color: #49E845;
+    }
+    .onoffswitch-checkboxretro:checked + .onoffswitch-labelretro, .onoffswitch-checkboxretro:checked + .onoffswitch-labelretro:before {
+       border-color: #49E845;
+    }
+    .onoffswitch-checkboxretro:checked + .onoffswitch-labelretro:before {
+        right: 0px; 
+    }
+
+/* */    
+
+    .onoffswitchljud {
+        position: relative; width: 62px;
+        -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+       display: inline-block;
+        float: right;
+        top: 5px;
+        right: 10px;        
+    }
+    .onoffswitch-checkboxljud {
+        display: none;
+    }
+    .onoffswitch-labelljud {
+        display: block; overflow: hidden; cursor: pointer;
+        height: 36px; padding: 0; line-height: 36px;
+        border: 2px solid #CCCCCC; border-radius: 36px;
+        background-color: #FFFFFF;
+        transition: background-color 0.3s ease-in;
+    }
+    .onoffswitch-labelljud:before {
+        content: "";
+        display: block; width: 36px; margin: 0px;
+        background: #FFFFFF;
+        position: absolute; top: 0; bottom: 0;
+        right: 24px;
+        border: 2px solid #CCCCCC; border-radius: 36px;
+        transition: all 0.3s ease-in 0s; 
+    }
+    .onoffswitch-checkboxljud:checked + .onoffswitch-labelljud {
+        background-color: #49E845;
+    }
+    .onoffswitch-checkboxljud:checked + .onoffswitch-labelljud, .onoffswitch-checkboxljud:checked + .onoffswitch-labelljud:before {
+       border-color: #49E845;
+    }
+    .onoffswitch-checkboxljud:checked + .onoffswitch-labelljud:before {
+        right: 0px; 
+    }    
+
+/* */    
+
+/* override lightbox */
+
+.featherlight {
+ 
+}
+
+.featherlight .featherlight-content {
+  background: #fff none repeat scroll 0 0 !important;
+  cursor: auto !important;
+  display: inline-block !important;
+  height: 75vh !important;
+  position: relative !important;
+  vertical-align: middle !important;
+  white-space: normal !important;
+  width: 95vw !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border-bottom: 0 !important;
+  max-height: auto !important;
+  min-width: none !important;
+  overflow: auto !important;
+  padding: 25px !important;
+}
+
+.megaman-center {
+
+
+  position: relative;
+  text-align: center;
+
+  width: 100%;
+  z-index: 9999 !important;
+
+position: relative;
+top: 50%;
+transform: translateY(-50%);  
+}
+
+/* close ovverride */
+
+.featherlight .featherlight-close-icon {
+    display: none !important;
+}
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.mobile-only {
+    display: none;
+}
+
+.displayblock {
+    display: block;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@font-face {
+    font-family: 'ds-digitalnormal';
+    src: url('../fonts/ds-digi-webfont.eot');
+    src: url('../fonts/ds-digi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ds-digi-webfont.woff2') format('woff2'),
+         url('../fonts/ds-digi-webfont.woff') format('woff'),
+         url('../fonts/ds-digi-webfont.ttf') format('truetype'),
+         url('../fonts/ds-digi-webfont.svg#ds-digitalnormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'highvoltage_roughregular';
+    src: url('../fonts/highvoltage_rough-webfont.eot');
+    src: url('../fonts/highvoltage_rough-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/highvoltage_rough-webfont.woff2') format('woff2'),
+         url('../fonts/highvoltage_rough-webfont.woff') format('woff'),
+         url('../fonts/highvoltage_rough-webfont.ttf') format('truetype'),
+         url('../fonts/highvoltage_rough-webfont.svg#highvoltage_roughregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+

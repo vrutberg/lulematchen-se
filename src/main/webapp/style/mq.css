@@ -7,122 +7,141 @@
 }
 
 @media print,
-(-o-min-device-pixel-ratio: 5/4),
-(-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution: 120dpi) {
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
 
 }
 
 @media screen and ( min-width: 2300px ) {
 
-    .pwrapper {
-        width: 100%;
-    }
+  .pwrapper {
+    width: 100%;
+  }
 
 }
 
 @media screen and ( min-width: 1200px ) {
 
-    .megaman-center {
-        font-size: 3em !important;
-    }
+  .megaman-center {
+    font-size: 3em !important;
+  }
 
 }
 
 @media screen and ( max-width: 1250px ) {
 
-    .pwrapper {
-        max-width: 100%;
-        min-width: 100%;
-        width: 100%;
-        padding-left: 25px;
-        padding-right: 25px;
-    }
+  .pwrapper {
+      max-width: 100%;
+      min-width: 100%;
+      width: 100%;
+      padding-left: 25px;
+      padding-right: 25px;
+  }
 
-    .p {
-        max-width: 100%;
-        min-width: 100%;
-        width: 100%;
-    }
+  .p {
+      max-width: 100%;
+      min-width: 100%;
+      width: 100%;
+  }
 
+/*
     .cover-up .svg-container > div > svg {
-        min-height: 0;
-    }
+    min-height: 0;
+  }
+*/
 
 }
 
 @media screen and ( max-width: 1024px ) and ( max-height: 768px ) and ( orientation: landscape ) {
 
-    .svg-container > div > svg {
-        min-width: 0;
-        max-width: none;
-        max-height: none;
-        min-height: 140px;
-    }
+  .svg-container > div > svg {
+      min-width: 0;
+      max-width: none;
+      max-height: none;
+      min-height: 140px;
+  }  
 
 }
 
 @media screen and ( max-width: 1024px ) {
 
-    .eventcontainer {
-        padding: 25px;
-        color: white;
-        -js-display: flex;
-        display: flex;
-        align-items: center;
-        /*    border-radius: 0;    */
-    }
+.eventcontainer {
+    padding: 25px;
+    color: white;
+    -js-display: flex;
+    display: flex;
+    align-items: center;
+/*    border-radius: 0;    */
+}
 
-    .svgcontainer {
-        width: 50%;
-        text-align: center;
-    }
+.svgcontainer {
+    width: 50%;
+    text-align: center;
+}
 
-    .svgcontainer svg {
-        min-width: 85%;
-        max-width: none;
-        max-height: 50%;
-        min-height: 0;
-    }
+.svgcontainer svg {
+    min-width: 85%;
+    max-width: none;
+    max-height: 50%;
+    min-height: 0;
+}
 
-    .eventtext {
-        font-family: 'highvoltage_roughregular',Arial,sans-serif;
-        font-size: 5em;
-        text-transform: uppercase;
-        width: 50%;
-        text-align: center;
-    }
+.eventtext {
+    font-family: 'highvoltage_roughregular',Arial,sans-serif;
+    font-size: 5em;   
+    text-transform: uppercase;
+    width: 50%;
+    text-align: center;
+}
 
-    .cover-up .svg-container > div > svg {
-        min-width: auto;
-        min-height: 0;
-    }
+  .cover-up .svg-container > div > svg {
+    min-width: auto;
+    min-height: 0;
+  }
 
-    .wewon > div {
-        width: 85%;
-        margin-right: 15%;
-        overflow: hidden;
-    }
+  .wewon > div {
+    width: 85%;
+    margin-right: 15%;
+    overflow: hidden;
+   }
 
-    .svg-container > div > svg {
-        min-width: 0;
-        max-width: none;
-        max-height: none;
+  .svg-container > div > svg {
+      min-width: 0;
+      max-width: none;
+      max-height: none;
 
-    }
+  }
+
+  .cover-up .svg-container > div > svg {
+    max-height: 200px;
+  }
+
+  .next-game-text {
+    font-size: 1.7em;
+  }
+
+
+  .next-game-counter {
+    font-size: 2.5em;
+  }
+
+  .next-game-request {
+    padding-top: 15px;
+  }
 
 }
 
 @media screen and ( max-width: 414px ) and ( orientation: portrait ) {
 
-    .svg-container > div > svg {
-        min-width: 200px;
-        max-height: 100px;
-    }
+  .svg-container > div > svg {
+      min-width: 200px;
+      max-height: 100px;   
+  }
 
-    .game-status {
-        line-height: normal;
-    }
+  .game-status {
+      line-height: normal;
+  }
 
 }
 
@@ -132,248 +151,349 @@
 
 @media screen and ( max-width: 900px ) {
 
-    .jumbotron {
-        padding: 25px 0 20px 0;
-    }
+  .jumbotron {
+    padding: 25px 0 20px 0;
+  }
 
-    .team-heading {
-        font-size: 4em;
-    }
+  .team-heading {
+    font-size: 4em;
+  }
 
-    .score {
-        font-size: 5em;
-    }
+  .score {
+    font-size: 5em;
+  }
 
-    .time {
-        font-size: 5.5em;
-    }
+  .time {
+    font-size: 5.5em;
+  }
 
-    .period-data {
-        font-size: 3.5em;
-    }
+  .period-data {
+    font-size: 3.5em;
+  }
 
-    .versus {
-        font-size: 3.5em;
-    }
+  .versus {
+    font-size: 3.5em;
+  }
 
-    .period-heading {
-        font-size: 1.9em;
-    }
+  .period-heading {
+    font-size: 1.9em;
+  }
 
-    .game-status {
-        font-size: 1.4em;
-    }
+  .game-status {
+    font-size: 1.4em;
+  }
 
-    .svg-container > div > svg {
-        min-width: 220px;
-        max-width: none;
-        max-height: 180px;
-        min-height: 180px;
-    }
+  .svg-container > div > svg {
+      min-width: 220px;
+      max-width: none;
+      max-height: 180px;
+      min-height: 180px;
+  }
 
 }
 
 @media screen and ( max-width: 767px ) {
 
-    html {
-        background-image: url("http://lulematchen.se/luleablur.jpg");
-        height: 100%;
-        background-size: cover;
-    }
+html {
+    height: 100%;
+    background-size: cover;  
+}
 
-    .container-jumbotron-outer {
-        padding: 0;
-        height: auto;
-    }
+html.html-game-is-on {
+    background-image: url("../img/general/luleablur.jpg");  
+}
 
-    .game-metadata,
-    .game-matchup,
-    .jumbotron
+html.html-cover-up {
+    background-image: url("../img/general/background_ice.jpg");
+}
 
-    {
-        padding: 25px 0;
-    }
+.container-jumbotron-outer {
+    padding: 0;
+    height: auto;
+}
 
-    .game-matchup {
-        padding: 0;
-    }
+  .game-metadata,
+  .game-matchup,
+  .jumbotron
 
-    .game-venue {
-        font-size: 1em;
-    }
+   {
+    padding: 25px 0;
+  }
 
-    .game-date {
-        font-size: 0.85em;
-    }
+  .game-matchup {
+    padding: 0;
+  }  
 
-    .game-info {
-        font-size: 0.85em;
-    }
+  .game-venue {
+    font-size: 1em;
+  }
 
-    .game-round {
-        font-size: 0.85em;
-    }
+  .game-date {
+    font-size: 0.85em;
+  }
+
+  .game-info {
+    font-size: 0.85em;
+  }
+
+  .game-round {
+    font-size: 0.85em;
+  }
+
+  /* enbart matchinteborjatan */
+
+  .cover-up .game-venue {
+    font-size: 1.5em;
+  }
+
+  .cover-up  .game-date {
+    font-size: 1em;
+  }
+
+  .cover-up .game-info {
+    font-size: 1em;
+  }
+
+  .cover-up .game-round {
+    font-size: 1em;
+  }
+
+  .next-game-text {
+    font-size: 1.5em;
+  }
 
 
-    .dblock {
-        display: block;
-        padding: 0;
-    }
+  .next-game-counter {
+    font-size: 1.9em;
+  }  
 
-    .jumbotron {
-        padding: 20px 0 15px 0;
-    }
+/* */
 
-    .svg-container > div > svg {
-        min-width: 0;
-        max-width: 50%;
-        max-height: 150px;
-        min-height: 150px;
-        display: block;
-        text-align: center;
-        margin: 0 auto;
-    }
+  .dblock {
+    display: block;
+    padding: 0;
+  }
 
-    .team-heading {
-        font-size: 2.35em;
-    }
+  .jumbotron {
+    padding: 20px 0 15px 0;
+  }
 
-    .score {
-        font-size: 2.85em;
-    }
+  .svg-container > div > svg {  
+    min-width: 0;
+    max-width: 50%;
+    max-height: 150px;
+    min-height: 150px;
+    display: block;     
+    text-align: center;
+    margin: 0 auto;
+  }
 
-    .time {
-        font-size: 3em;
-    }
+  .team-heading {
+    font-size: 2.35em;
+  }
 
-    .period-data {
-        font-size: 1.75em;
-    }
+  .score {
+    font-size: 2.85em;
+  }
 
-    .versus {
-        font-size: 2.5em;
-    }
+  .time {
+    font-size: 3em;
+  }
 
-    .period-heading {
-        font-size: 1.5em;
-    }
+  .period-data {
+    font-size: 1.75em;
+  }
 
-    .game-status {
-        font-size: 0.75em;
-        padding: 0;
-        line-height: 3em;
-    }
+  .versus {
+    font-size: 2.5em;
+  }
 
-    .fullpageevent {
-        /*
-          transform: scale(1,1);
-          opacity: 1;
-        */
-    }
+  .period-heading {
+    font-size: 1.5em;
+  }
 
-    .eventcontainer {
-        padding: 25px;
-        color: white;
-        -js-display: flex;
-        display: flex;
-        align-items: center;
-        /*    border-radius: 0;     */
-    }
+  .game-status {
+    font-size: 0.75em;
+    padding: 0;
+    line-height: 3em;
+  }
 
-    .svgcontainer {
-        width: 50%;
-        text-align: center;
-    }
+.fullpageevent {
+/*
+  transform: scale(1,1);
+  opacity: 1;
+*/
+}
 
-    .svgcontainer svg {
-        min-width: 85%;
-        max-width: none;
-        max-height: 50%;
-        min-height: 0;
-    }
+.eventcontainer {
+    padding: 25px;
+    color: white;
+    -js-display: flex;
+    display: flex;
+    align-items: center;
+/*    border-radius: 0;     */
+}
 
-    .eventtext {
-        font-family: 'highvoltage_roughregular',Arial,sans-serif;
-        font-size: 3em;
-        text-transform: uppercase;
-        width: 50%;
-        text-align: center;
-    }
+.svgcontainer {
+    width: 50%;
+    text-align: center;
+}
+
+.svgcontainer svg {
+    min-width: 85%;
+    max-width: none;
+    max-height: 50%;
+    min-height: 0;
+}
+
+.eventtext {
+    font-family: 'highvoltage_roughregular',Arial,sans-serif;
+    font-size: 3em;   
+    text-transform: uppercase;
+    width: 50%;
+    text-align: center;
+}
 
 }
 
-@media screen and ( max-width: 640px ) {
+@media screen and ( max-width: 700px ) {
 
-    .game-metadata {
-        padding-right: 40px !important;
-        padding-left: 40px !important;
-    }
+.mobile-only {
+  display: block;
+}
+
+.cover-up {
+  display: block;
+  padding: 25px 0;
+}
+
+.cover-up .svg-container > div > svg {
+  max-height: 140px;
+}
+
+.game-metadata {
+  padding-right: 40px !important;
+  padding-left: 40px !important;
+}
+
+.cover-up .game-metadata {
+  padding-right: 0 !important;
+  padding-left: 0 !important;  
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.cover-up-inner {
+  padding: 25px;
+}
+
+  .cover-up .game-venue {
+    font-size: 1.2em;
+    padding-bottom: 10px;
+  }
+
+  .cover-up  .game-date {
+    font-size: 1em;
+    display: inline;    
+  }
+
+  .cover-up .game-info {
+    font-size: 0.85em;
+    display: inline;    
+  }
+
+  .cover-up .game-round {
+    font-size: 0.85em;
+    display: inline;
+  }
+
+  .next-game-text {
+    font-size: 0.85em;
+  }
+
+  .next-game-counter {
+    font-size: 1.5em;
+  }
+
+  .next-game-request {
+    display: none !important;
+  }
 
 }
 
 @media screen and ( max-width: 490px ) {
 
-    .svg-container > div > svg {
-        max-width: 80%;
-    }
+  .svg-container > div > svg {  
+    max-width: 80%;
+  }
+
+  .cover-up .versus {
+    font-size: 1.5em;
+  }
 
 }
 
 @media screen and ( max-width: 360px ) {
 
-    .svg-container > div > svg {
-        min-width: 80px;
-        max-width: 30%;
-        display: block;
-    }
+  .svg-container > div > svg {  
+    min-width: 80px;
+    max-width: 30%;
+    display: block;     
+  }
 
-    .team-heading {
-        font-size: 2em;
-    }
+  .cover-up .svg-container > div > svg {
+    max-width: 100%;
+  }
 
-    .score {
-        font-size: 2.35em;
-    }
+  .team-heading {
+    font-size: 2em;
+  }
 
-    .time {
-        font-size: 2.5em;
-    }
+  .score {
+    font-size: 2.35em;
+  }
+
+  .time {
+    font-size: 2.5em;
+  }
+
+  .next-game-counter {
+    font-size: 1.25em;
+  }  
 
 }
 
-
-
-
 @media screen and ( max-height: 870px ) and ( orientation: landscape ) {
 
-    .svg-container > div > svg {
-        min-width: 200px;
-        max-height: 180px;
-    }
+  .svg-container > div > svg {
+      min-width: 200px;
+      max-height: 180px;
+  }
 
-    .game-status {
-        line-height: normal;
-    }
+  .game-status {
+      line-height: normal;
+  }
 
 }
 
 @media screen and ( max-height: 800px ) and ( orientation: landscape ) {
 
-    .game-metadata {
-        padding-bottom: 20px;
-    }
+  .game-metadata {
+    padding-bottom: 20px;
+  }
 
-    .game-matchup {
-        padding-bottom: 20px;
-    }
+  .game-matchup {
+    padding-bottom: 20px;
+  }
 
 }
 
 @media screen and ( max-height: 740px ) and ( orientation: landscape ) {
 
-    .svg-container > div > svg {
-        min-width: 200px;
-        max-height: 100px;
-        min-height: auto;
-    }
+  .svg-container > div > svg {
+      min-width: 200px;
+      max-height: 100px;
+      min-height: auto;      
+  }
+
 }
