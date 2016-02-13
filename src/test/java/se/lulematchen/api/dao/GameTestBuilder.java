@@ -2,10 +2,10 @@ package se.lulematchen.api.dao;
 
 import java.time.LocalDateTime;
 
-public class GameBuilder {
+public class GameTestBuilder {
     private Game game = null;
 
-    public GameBuilder aGame() {
+    public GameTestBuilder aGame() {
         game = new Game("SAIK",
                 0,
                 false,
@@ -29,17 +29,17 @@ public class GameBuilder {
         return this;
     }
 
-    public GameBuilder withStartDateTime(LocalDateTime startDateTime) {
+    public GameTestBuilder withStartDateTime(LocalDateTime startDateTime) {
         game.setStartDateTime(startDateTime);
         return this;
     }
 
-    public GameBuilder withGameId(int gameId) {
+    public GameTestBuilder withGameId(int gameId) {
         game.setGameId(gameId);
         return this;
     }
 
-    public GameBuilder withPlayed(boolean played) {
+    public GameTestBuilder withPlayed(boolean played) {
         game.setPlayed(played);
         return this;
     }

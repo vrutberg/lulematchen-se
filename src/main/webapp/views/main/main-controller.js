@@ -31,11 +31,13 @@ angular.module('app').controller('MainController', ['ApiService', '$interval',
       vm.getGame().then(function(game) {
         vm.game = game;
 
+        vm.hasGameStarted = vm.isBeforeNow(vm.game.startDateTime);
+
         if (window.location.href.indexOf("forceLive") !== -1) {
           vm.game.played = false;
+          vm.game.gameId = 1337;
+          vm.hasGameStarted = true;
         }
-
-        vm.hasGameStarted = vm.isBeforeNow(vm.game.startDateTime);
       });
     };
   }]);

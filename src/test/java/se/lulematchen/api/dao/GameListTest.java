@@ -13,11 +13,11 @@ public class GameListTest {
 
     @Test
     public void getLastPlayedGame_shouldReturnTheCorrectGame() {
-        GameBuilder gameBuilder = new GameBuilder();
+        GameTestBuilder gameTestBuilder = new GameTestBuilder();
 
-        Game gameOne = gameBuilder.aGame().withGameId(1).withStartDateTime(LocalDateTime.now().minusDays(2)).withPlayed(true).build();
-        Game gameTwo = gameBuilder.aGame().withGameId(2).withStartDateTime(LocalDateTime.now().plusDays(10)).withPlayed(false).build();
-        Game gameThree = gameBuilder.aGame().withGameId(3).withStartDateTime(LocalDateTime.now().minusDays(1)).withPlayed(true).build();
+        Game gameOne = gameTestBuilder.aGame().withGameId(1).withStartDateTime(LocalDateTime.now().minusDays(2)).withPlayed(true).build();
+        Game gameTwo = gameTestBuilder.aGame().withGameId(2).withStartDateTime(LocalDateTime.now().plusDays(10)).withPlayed(false).build();
+        Game gameThree = gameTestBuilder.aGame().withGameId(3).withStartDateTime(LocalDateTime.now().minusDays(1)).withPlayed(true).build();
 
         GameList gameList = new GameList(Arrays.asList(gameOne, gameTwo, gameThree));
 
@@ -28,9 +28,9 @@ public class GameListTest {
 
     @Test
     public void getGamesByDate_shouldReturnOneGame_whenThereIsAGameThatMatches() throws Exception {
-        GameBuilder gameBuilder = new GameBuilder();
+        GameTestBuilder gameTestBuilder = new GameTestBuilder();
 
-        Game game = gameBuilder.aGame().withStartDateTime(LocalDateTime.now()).build();
+        Game game = gameTestBuilder.aGame().withStartDateTime(LocalDateTime.now()).build();
         GameList gameList = new GameList(Arrays.asList(game));
         List<Game> listOfGames = gameList.getGamesByDate(LocalDate.now());
 
@@ -39,9 +39,9 @@ public class GameListTest {
 
     @Test
     public void getGamesByDate_shouldNotReturnAnyGames_whenThereAreNoGamesThatMatch() throws Exception {
-        GameBuilder gameBuilder = new GameBuilder();
+        GameTestBuilder gameTestBuilder = new GameTestBuilder();
 
-        Game game = gameBuilder.aGame().withStartDateTime(LocalDateTime.now().plusDays(1)).build();
+        Game game = gameTestBuilder.aGame().withStartDateTime(LocalDateTime.now().plusDays(1)).build();
         GameList gameList = new GameList(Arrays.asList(game));
         List<Game> listOfGames = gameList.getGamesByDate(LocalDate.now());
 
@@ -50,10 +50,10 @@ public class GameListTest {
 
     @Test
     public void getGamesByDate_shouldReturnOneGame_whenThereAreBothMatchingAndNonMatchingGames() throws Exception {
-        GameBuilder gameBuilder = new GameBuilder();
+        GameTestBuilder gameTestBuilder = new GameTestBuilder();
 
-        Game gameOne = gameBuilder.aGame().withStartDateTime(LocalDateTime.now()).build();
-        Game gameTwo = gameBuilder.aGame().withStartDateTime(LocalDateTime.now().plusDays(1)).build();
+        Game gameOne = gameTestBuilder.aGame().withStartDateTime(LocalDateTime.now()).build();
+        Game gameTwo = gameTestBuilder.aGame().withStartDateTime(LocalDateTime.now().plusDays(1)).build();
         GameList gameList = new GameList(Arrays.asList(gameOne, gameTwo));
         List<Game> listOfGames = gameList.getGamesByDate(LocalDate.now());
 
