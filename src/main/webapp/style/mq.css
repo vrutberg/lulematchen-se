@@ -44,18 +44,11 @@
       min-width: 100%;
       width: 100%;
   }
-
-/*
-    .cover-up .svg-container > div > svg {
-    min-height: 0;
-  }
-*/
-
 }
 
 @media screen and ( max-width: 1024px ) and ( max-height: 768px ) and ( orientation: landscape ) {
 
-  .svg-container > div > svg {
+  .svg-container img {
       min-width: 0;
       max-width: none;
       max-height: none;
@@ -80,7 +73,7 @@
     text-align: center;
 }
 
-.svgcontainer svg {
+.svgcontainer img {
     min-width: 85%;
     max-width: none;
     max-height: 50%;
@@ -95,7 +88,7 @@
     text-align: center;
 }
 
-  .cover-up .svg-container > div > svg {
+  .cover-up .svg-container img {
     min-width: auto;
     min-height: 0;
   }
@@ -106,14 +99,14 @@
     overflow: hidden;
    }
 
-  .svg-container > div > svg {
+  .svg-container img {
       min-width: 0;
       max-width: none;
       max-height: none;
 
   }
 
-  .cover-up .svg-container > div > svg {
+  .cover-up .svg-container img {
     max-height: 200px;
   }
 
@@ -134,7 +127,7 @@
 
 @media screen and ( max-width: 414px ) and ( orientation: portrait ) {
 
-  .svg-container > div > svg {
+  .svg-container img {
       min-width: 200px;
       max-height: 100px;   
   }
@@ -183,7 +176,7 @@
     font-size: 1.4em;
   }
 
-  .svg-container > div > svg {
+  .svg-container img {
       min-width: 220px;
       max-width: none;
       max-height: 180px;
@@ -278,7 +271,7 @@ html.html-cover-up {
     padding: 20px 0 15px 0;
   }
 
-  .svg-container > div > svg {  
+  .svg-container img {
     min-width: 0;
     max-width: 50%;
     max-height: 150px;
@@ -339,7 +332,7 @@ html.html-cover-up {
     text-align: center;
 }
 
-.svgcontainer svg {
+.svgcontainer img {
     min-width: 85%;
     max-width: none;
     max-height: 50%;
@@ -367,7 +360,7 @@ html.html-cover-up {
   padding: 25px 0;
 }
 
-.cover-up .svg-container > div > svg {
+.cover-up .svg-container img {
   max-height: 140px;
 }
 
@@ -423,7 +416,7 @@ html.html-cover-up {
 
 @media screen and ( max-width: 490px ) {
 
-  .svg-container > div > svg {  
+  .svg-container img {
     max-width: 80%;
   }
 
@@ -435,13 +428,13 @@ html.html-cover-up {
 
 @media screen and ( max-width: 360px ) {
 
-  .svg-container > div > svg {  
+  .svg-container img {
     min-width: 80px;
     max-width: 30%;
     display: block;     
   }
 
-  .cover-up .svg-container > div > svg {
+  .cover-up .svg-container img {
     max-width: 100%;
   }
 
@@ -465,7 +458,7 @@ html.html-cover-up {
 
 @media screen and ( max-height: 870px ) and ( orientation: landscape ) {
 
-  .svg-container > div > svg {
+  .svg-container img {
       min-width: 200px;
       max-height: 180px;
   }
@@ -489,11 +482,9 @@ html.html-cover-up {
 }
 
 @media screen and ( max-height: 740px ) and ( orientation: landscape ) {
-
-  .svg-container > div > svg {
+  .svg-container img {
       min-width: 200px;
       max-height: 100px;
-      min-height: auto;      
+      min-height: auto;
   }
-
 }
