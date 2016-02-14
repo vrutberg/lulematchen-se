@@ -1,4 +1,4 @@
-angular.module('app').factory('AudioService', ['SettingsService', 'Modernizr', function(SettingsService, Modernizr) {
+angular.module('app').factory('AudioService', [function() {
   return {
     playAudio: function(audioFile) {
       new Audio(audioFile).play();
