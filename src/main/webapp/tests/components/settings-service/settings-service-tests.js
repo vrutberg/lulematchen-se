@@ -10,6 +10,10 @@ describe('SettingsService', function() {
     localStorage.clear();
   }));
 
+  afterEach(function() {
+    localStorage.clear();
+  });
+
   describe('audio', function() {
     it('should be on by default', function() {
       var value = SettingsService.isAudioEnabled();
