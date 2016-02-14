@@ -1,4 +1,4 @@
-angular.module('app').directive('hamburgerMenu', function() {
+angular.module('app').directive('hamburgerMenu', ['Modernizr', function(Modernizr) {
   return {
     templateUrl: 'components/hamburger-menu-directive/hamburger-menu-template.html',
 
@@ -26,4 +26,4 @@ angular.module('app').directive('hamburgerMenu', function() {
       });
     }
   };
-});
+}]);
