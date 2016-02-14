@@ -1,4 +1,4 @@
-angular.module('app').directive('hamburgerMenu', ['Modernizr', function(Modernizr) {
+angular.module('app').directive('hamburgerMenu', ['Modernizr', 'SettingsService', function(Modernizr, SettingsService) {
   return {
     templateUrl: 'components/hamburger-menu-directive/hamburger-menu-template.html',
 
@@ -6,6 +6,13 @@ angular.module('app').directive('hamburgerMenu', ['Modernizr', function(Moderniz
 
     controller: ['$scope', function($scope) {
       $scope.isAutoplaySupported = false;
+      $scope.isAudioEnabled = SettingsService.isAudioEnabled();
+
+      $scope.$watch('isAudioEnabled', function(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          SettingsService.setAudioEnabled(newValue);
+        }
+      });
 
       $scope.$watch(function() { return Modernizr.autoplay; }, function(newValue, oldValue) {
         $scope.isAutoplaySupported = newValue;

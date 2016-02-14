@@ -8,11 +8,11 @@ angular.module('app').factory('SoundEffectsService', ['AudioService', 'SettingsS
   };
 
   return {
-    playGoalSound: shouldPlayAudioProxyFn(function() {
+    playOurTeamScoredSound: shouldPlayAudioProxyFn(function() {
       AudioService.playAudio('audio/lule-gor-mal.mp3');
     }),
 
-    playOwnGoalSound: shouldPlayAudioProxyFn(function() {
+    playOtherTeamScoredSound: shouldPlayAudioProxyFn(function() {
       AudioService.playAudio('audio/lule-slapper-in-mal.mp3');
     }),
 

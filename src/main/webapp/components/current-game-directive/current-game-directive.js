@@ -1,4 +1,4 @@
-angular.module('app').directive('currentGame', ['ApiService', '$interval', function(ApiService, $interval) {
+angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsService', '$interval', function(ApiService, SoundEffectsService, $interval) {
   return {
     templateUrl: 'components/current-game-directive/current-game-template.html',
     scope: {
@@ -36,12 +36,24 @@ angular.module('app').directive('currentGame', ['ApiService', '$interval', funct
 
       $scope.$watch('homeScore', function(newValue, oldValue) {
         if (oldValue !== -1 && newValue !== oldValue) {
+          if ($scope.game.homeTeamCode === 'LHF') {
+            SoundEffectsService.playOurTeamScoredSound();
+          } else {
+            SoundEffectsService.playOtherTeamScoredSound();
+          }
+
           console.log('homeScore changed from', oldValue, 'to', newValue);
         }
       });
 
       $scope.$watch('awayScore', function(newValue, oldValue) {
         if (oldValue !== -1 && newValue !== oldValue) {
+          if ($scope.game.awayTeamCode === 'LHF') {
+            SoundEffectsService.playOurTeamScoredSound();
+          } else {
+            SoundEffectsService.playOtherTeamScoredSound();
+          }
+
           console.log('awayScore changed from', oldValue, 'to', newValue);
         }
       });

@@ -75,14 +75,6 @@ textarea {
     height: 100%;
 }
 
-html.no-autoplay.mobile .audio-autoplay,
-html.no-autoplay.phone .audio-autoplay,
-html.no-autoplay.tablet .audio-autoplay,
-html.no-autoplay.mobilegradea .audio-autoplay
-{
-    display: none !important;
-}
-
 .facebook-share {
     position: fixed;
     z-index: 104;
