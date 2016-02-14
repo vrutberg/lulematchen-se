@@ -1,4 +1,4 @@
-angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsService', '$interval', function(ApiService, SoundEffectsService, $interval) {
+angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsService', '$interval', '$timeout', function(ApiService, SoundEffectsService, $interval, $timeout) {
   return {
     templateUrl: 'components/current-game-directive/current-game-template.html',
     scope: {
@@ -41,8 +41,6 @@ angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsServi
           } else {
             SoundEffectsService.playOtherTeamScoredSound();
           }
-
-          console.log('homeScore changed from', oldValue, 'to', newValue);
         }
       });
 
@@ -53,8 +51,6 @@ angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsServi
           } else {
             SoundEffectsService.playOtherTeamScoredSound();
           }
-
-          console.log('awayScore changed from', oldValue, 'to', newValue);
         }
       });
 
@@ -68,6 +64,12 @@ angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsServi
         updateDetails($scope.game.gameId).then(function () {
           $scope.isLoading = false;
         });
+      }
+
+      if (window.location.href.indexOf("forceLive") !== -1) {
+        $timeout(function() {
+          $scope.homeScore = 4;
+        }, 3000);
       }
     }]
   };

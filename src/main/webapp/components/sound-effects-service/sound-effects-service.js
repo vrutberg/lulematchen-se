@@ -1,7 +1,7 @@
 angular.module('app').factory('SoundEffectsService', ['AudioService', 'SettingsService', 'Modernizr', function(AudioService, SettingsService, Modernizr) {
   var shouldPlayAudioProxyFn = function(audioPlayingFn) {
     return function() {
-      if (SettingsService.isAudioEnabled() && Modernizr.autoplay) {
+      if (SettingsService.isAudioEnabled() && Modernizr.audio) {
         audioPlayingFn();
       }
     };
