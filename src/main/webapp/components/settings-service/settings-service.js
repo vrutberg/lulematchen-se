@@ -1,5 +1,6 @@
 angular.module('app').factory('SettingsService', ['StorageService', function(StorageService) {
   var AUDIO_ENABLED_KEY = "se.lulematchen.settings.audio";
+  var WEB_NOTIFICATIONS_ENABLED_KEY = "se.lulematchen.settings.web-notifications";
 
   return {
     isAudioEnabled: function() {
@@ -8,6 +9,14 @@ angular.module('app').factory('SettingsService', ['StorageService', function(Sto
 
     setAudioEnabled: function(value) {
       StorageService.writeValue(AUDIO_ENABLED_KEY, value);
+    },
+
+    isWebNotificationsEnabled: function() {
+      return StorageService.readValue(WEB_NOTIFICATIONS_ENABLED_KEY, false);
+    },
+
+    setWebNotificationsEnabled: function(value) {
+      return StorageService.writeValue(WEB_NOTIFICATIONS_ENABLED_KEY, value);
     }
   };
 }]);

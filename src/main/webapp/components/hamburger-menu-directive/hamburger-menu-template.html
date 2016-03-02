@@ -23,9 +23,18 @@
       <li ng-show="isAutoplaySupported">
         <a class="drawer-menu-item" style="display: inline-block; text-decoration: none;">Ljud</a>
 
-        <div class="onoffswitchljud">
-          <input type="checkbox" class="onoffswitch-checkboxljud" id="ljudswitch" ng-model="isAudioEnabled">
-          <label class="onoffswitch-labelljud" for="ljudswitch"></label>
+        <div class="onoffswitch">
+          <input type="checkbox" class="onoffswitch-checkbox" id="ljudswitch" ng-model="isAudioEnabled">
+          <label class="onoffswitch-label" for="ljudswitch"></label>
+        </div>
+      </li>
+
+      <li ng-show="isWebNotificationsSupported">
+        <a class="drawer-menu-item" style="display: inline-block; text-decoration: none;">Notiser</a>
+
+        <div class="onoffswitch">
+          <input type="checkbox" class="onoffswitch-checkbox" id="notisswitch" ng-model="isWebNotificationsEnabled">
+          <label class="onoffswitch-label" for="notisswitch"></label>
         </div>
       </li>
 

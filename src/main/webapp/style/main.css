@@ -627,6 +627,43 @@ header {
 
 /* switch */
 
+.onoffswitch {
+    position: relative; width: 62px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    display: inline-block;
+    float: right;
+    top: 5px;
+    right: 10px;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 36px; padding: 0; line-height: 36px;
+    border: 2px solid #CCCCCC; border-radius: 36px;
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 36px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 24px;
+    border: 2px solid #CCCCCC; border-radius: 36px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    border-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px;
+}
+/*
     .onoffswitchretro {
         position: relative; width: 62px;
         -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
@@ -664,7 +701,7 @@ header {
         right: 0px; 
     }
 
-/* */    
+/!* *!/
 
     .onoffswitchljud {
         position: relative; width: 62px;
@@ -701,7 +738,7 @@ header {
     }
     .onoffswitch-checkboxljud:checked + .onoffswitch-labelljud:before {
         right: 0px; 
-    }    
+    }    */
 
 /* */    
 

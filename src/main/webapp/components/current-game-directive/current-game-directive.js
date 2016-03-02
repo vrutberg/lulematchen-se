@@ -1,4 +1,4 @@
-angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsService', '$interval', '$timeout', function(ApiService, SoundEffectsService, $interval, $timeout) {
+angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsService', 'NotificationService', '$interval', '$timeout', function(ApiService, SoundEffectsService, NotificationService, $interval, $timeout) {
   return {
     templateUrl: 'components/current-game-directive/current-game-template.html',
     scope: {
@@ -36,6 +36,11 @@ angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsServi
 
       $scope.$watch('homeScore', function(newValue, oldValue) {
         if (oldValue !== -1 && newValue !== oldValue) {
+          var title = $scope.game.homeTeamCode + " vs. " + $scope.game.awayTeamCode;
+          var body = $scope.game.homeTeamCode + " gjorde mål. Ställningen är " + $scope.homeScore + "-" + $scope.awayScore;
+
+          NotificationService.displayNotification(title, body);
+
           if ($scope.game.homeTeamCode === 'LHF') {
             SoundEffectsService.playOurTeamScoredSound();
           } else {
@@ -46,6 +51,11 @@ angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsServi
 
       $scope.$watch('awayScore', function(newValue, oldValue) {
         if (oldValue !== -1 && newValue !== oldValue) {
+          var title = $scope.game.homeTeamCode + " vs. " + $scope.game.awayTeamCode;
+          var body = $scope.game.awayTeamCode + " gjorde mål. Ställningen är " + $scope.homeScore + "-" + $scope.awayScore;
+
+          NotificationService.displayNotification(title, body);
+
           if ($scope.game.awayTeamCode === 'LHF') {
             SoundEffectsService.playOurTeamScoredSound();
           } else {
