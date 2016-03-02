@@ -64,6 +64,9 @@ angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsServi
         updateDetails($scope.game.gameId).then(function () {
           $scope.isLoading = false;
         });
+      } else {
+        $scope.homeScore = $scope.game.homeTeamResult;
+        $scope.awayScore = $scope.game.awayTeamResult;
       }
 
       if (window.location.href.indexOf("forceLive") !== -1) {
