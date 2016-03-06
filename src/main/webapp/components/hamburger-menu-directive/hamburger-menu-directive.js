@@ -1,4 +1,4 @@
-angular.module('app').directive('hamburgerMenu', ['Modernizr', 'SettingsService', 'WebNotificationsService', function(Modernizr, SettingsService, WebNotificationsService) {
+angular.module('app').directive('hamburgerMenu', ['Modernizr', 'SettingsService', function(Modernizr, SettingsService) {
   return {
     templateUrl: 'components/hamburger-menu-directive/hamburger-menu-template.html',
 
@@ -6,9 +6,6 @@ angular.module('app').directive('hamburgerMenu', ['Modernizr', 'SettingsService'
 
     controller: ['$scope', function($scope) {
       $scope.isAutoplaySupported = false;
-      $scope.isWebNotificationsSupported = WebNotificationsService.isSupported();
-
-      $scope.isWebNotificationsEnabled = !WebNotificationsService.needsPermission() && SettingsService.isWebNotificationsEnabled();
       $scope.isAudioEnabled = SettingsService.isAudioEnabled();
       $scope.isRetroModeEnabled = SettingsService.isRetroModeEnabled();
 
@@ -21,22 +18,6 @@ angular.module('app').directive('hamburgerMenu', ['Modernizr', 'SettingsService'
       $scope.$watch('isRetroModeEnabled', function(newValue, oldValue) {
         if (newValue !== oldValue) {
           SettingsService.setRetroModeEnabled(newValue);
-        }
-      });
-
-      $scope.$watch('isWebNotificationsEnabled', function(newValue, oldValue) {
-        if (newValue !== oldValue) {
-          if (newValue === true && WebNotificationsService.needsPermission()) {
-            SettingsService.setWebNotificationsEnabled(false);
-
-            WebNotificationsService.requestPermission().then(function() {
-              SettingsService.setWebNotificationsEnabled(true);
-            }, function() {
-              $scope.isWebNotificationsEnabled = false;
-            });
-          } else {
-            SettingsService.setWebNotificationsEnabled(newValue);
-          }
         }
       });
 

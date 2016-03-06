@@ -1,5 +1,5 @@
-angular.module('app').controller('MainController', ['ApiService', '$interval',
-  function(ApiService, $interval) {
+angular.module('app').controller('MainController', ['ApiService', 'WebNotificationsService', '$interval',
+  function(ApiService, WebNotificationsService, $interval) {
     var vm = this;
 
     vm.game = undefined;
@@ -39,6 +39,10 @@ angular.module('app').controller('MainController', ['ApiService', '$interval',
           vm.hasGameStarted = true;
         }
       });
+
+      if (WebNotificationsService.needsPermission()) {
+        WebNotificationsService.requestPermission();
+      }
     };
 
     $interval(function() {
