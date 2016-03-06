@@ -49,7 +49,7 @@
               {{currentGameTime.minutes}}:{{currentGameTime.seconds}}
             </span>
           </div>
-          <div class="period-status">
+          <div class="period-status" ng-show="gameDetails.live.period">
             <div class="period-heading">
               Period
             </div>
@@ -68,11 +68,8 @@
           </div>
         </div>
         <div class="clearfix"></div>
-        <div class="game-status" ng-class="{ 'green': !game.played, 'red': game.played }">
-          <!-- när spelet är aktivt, klass green, "Matchen pågår" -->
-          <!-- byts till klassen yellow när det är paus, "Paus" -->
-          <!-- byts till klassen red när matchen är slut, "Matchen är slut" -->
-          Matchen pågår
+        <div class="game-status" ng-class="{ 'green': currentGameState === GAME_STATES.PLAYING, 'red': currentGameState === GAME_STATES.OVER || currentGameState === GAME_STATES.NOT_STARTED, 'yellow': currentGameState === GAME_STATES.INTERMISSION }">
+          {{getGameStateString()}}
         </div>
       </div>
     </div>

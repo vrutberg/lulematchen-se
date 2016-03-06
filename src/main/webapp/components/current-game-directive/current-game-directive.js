@@ -9,12 +9,49 @@ angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsServi
       // TODO: do this in a more angular way
       $('html').removeClass('html-cover-up').addClass('html-game-is-on');
 
+      $scope.GAME_STATES = {
+        NOT_STARTED: 10000,
+        PLAYING: 10001,
+        INTERMISSION: 10002,
+        OVER: 10003
+      };
+
       $scope.isLoading = false;
       $scope.dateString = _.capitalize(moment($scope.game.startDateTime)
         .format('dddd, D MMMM YYYY - HH:mm'));
 
       $scope.homeScore = -1;
       $scope.awayScore = -1;
+
+      $scope.currentGameState = $scope.GAME_STATES.NOT_STARTED;
+
+      var getGameState = function(game) {
+        if (game.played) {
+          return $scope.GAME_STATES.OVER;
+        }
+
+        if (!game.live) {
+          return $scope.GAME_STATES.NOT_STARTED;
+        }
+
+        if (parseTimePeriod(game.live.timePeriod)) {
+          return $scope.GAME_STATES.INTERMISSION;
+        }
+
+        return $scope.GAME_STATES.PLAYING;
+      };
+
+      $scope.getGameStateString = function() {
+        if ($scope.currentGameState === $scope.GAME_STATES.NOT_STARTED) {
+          return 'Matchen har inte börjat';
+        } else if ($scope.currentGameState === $scope.GAME_STATES.PLAYING) {
+          return 'Matchen pågår';
+        } else if ($scope.currentGameState === $scope.GAME_STATES.INTERMISSION) {
+          return 'Paus';
+        } else if ($scope.currentGameState === $scope.GAME_STATES.OVER) {
+          return 'Matchen är slut';
+        }
+      };
 
       var parseTimePeriod = function(timePeriod) {
         return {
@@ -27,10 +64,17 @@ angular.module('app').directive('currentGame', ['ApiService', 'SoundEffectsServi
         return ApiService.getGameDetails(gameId).then(function (response) {
           $scope.gameDetails = response.data;
 
-          $scope.homeScore = $scope.gameDetails.live.homeScore;
-          $scope.awayScore = $scope.gameDetails.live.awayScore;
+          $scope.currentGameState = getGameState($scope.gameDetails);
 
-          $scope.currentGameTime = parseTimePeriod($scope.gameDetails.live.timePeriod);
+          if ($scope.currentGameState == $scope.GAME_STATES.NOT_STARTED) {
+            $scope.homeScore = 0;
+            $scope.awayScore = 0;
+          } else {
+            $scope.homeScore = $scope.gameDetails.live.homeScore;
+            $scope.awayScore = $scope.gameDetails.live.awayScore;
+
+            $scope.currentGameTime = parseTimePeriod($scope.gameDetails.live.timePeriod);
+          }
         });
       };
 

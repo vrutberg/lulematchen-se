@@ -1,4 +1,4 @@
 *.iml
 target
 env.properties
-lulematchen.log
+lulematchen.log*
