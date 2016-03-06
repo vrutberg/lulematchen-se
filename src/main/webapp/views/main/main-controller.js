@@ -40,4 +40,12 @@ angular.module('app').controller('MainController', ['ApiService', '$interval',
         }
       });
     };
+
+    $interval(function() {
+      vm.getGame().then(function(game) {
+        vm.game = game;
+
+        vm.hasGameStarted = vm.isBeforeNow(vm.game.startDateTime);
+      });
+    }, 10000);
   }]);
