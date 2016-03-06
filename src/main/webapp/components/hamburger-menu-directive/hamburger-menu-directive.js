@@ -10,10 +10,17 @@ angular.module('app').directive('hamburgerMenu', ['Modernizr', 'SettingsService'
 
       $scope.isWebNotificationsEnabled = !WebNotificationsService.needsPermission() && SettingsService.isWebNotificationsEnabled();
       $scope.isAudioEnabled = SettingsService.isAudioEnabled();
+      $scope.isRetroModeEnabled = SettingsService.isRetroModeEnabled();
 
       $scope.$watch('isAudioEnabled', function(newValue, oldValue) {
         if (newValue !== oldValue) {
           SettingsService.setAudioEnabled(newValue);
+        }
+      });
+
+      $scope.$watch('isRetroModeEnabled', function(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          SettingsService.setRetroModeEnabled(newValue);
         }
       });
 

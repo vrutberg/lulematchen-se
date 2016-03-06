@@ -10,16 +10,14 @@
 
       <!-- kom ihåg val med cookie som sätts till så långt det går -->
       <!-- vid retro mode = on, så byts lhf-loggan (den med björnen) ut till gamla stålmannen-loggan -->
-      <!--<li>-->
-        <!--<a class="drawer-menu-item" style="display: inline-block; text-decoration: none;">Retro mode</a>-->
-        <!--<div class="onoffswitchretro">-->
-          <!--<input type="checkbox" name="onoffswitchretro" class="onoffswitch-checkboxretro" id="retroswitch">-->
-          <!--<label class="onoffswitch-labelretro" for="retroswitch"></label>-->
-        <!--</div>-->
-      <!--</li>-->
+      <li>
+        <a class="drawer-menu-item" style="display: inline-block; text-decoration: none;">Retro mode</a>
+        <div class="onoffswitch">
+          <input type="checkbox"class="onoffswitch-checkbox" id="retroswitch" ng-model="isRetroModeEnabled">
+          <label class="onoffswitch-label" for="retroswitch"></label>
+        </div>
+      </li>
 
-      <!-- kom ihåg val med cookie som sätts till så långt det går -->
-      <!-- om valet är på (default), så är det ljud, slår man av det är det inte ljud -->
       <li ng-show="isAutoplaySupported">
         <a class="drawer-menu-item" style="display: inline-block; text-decoration: none;">Ljud</a>
 
