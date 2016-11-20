@@ -49,35 +49,6 @@ public class ShlApiImpl implements ShlApi {
         return objectMapper;
     }
 
-    private <T> T makeRequest(HttpUriRequest request, TypeReference<T> typeReference)
-            throws ExpiredAccessTokenException, IOException
-    {
-        CloseableHttpResponse response = null;
-
-        try {
-            response = httpClient.execute(request);
-
-            if (response.getStatusLine().getStatusCode() == HttpServletResponse.SC_FORBIDDEN) {
-                throw new ExpiredAccessTokenException();
-            }
-
-            if (response.getStatusLine().getStatusCode() != HttpServletResponse.SC_OK) {
-                logger.warn("Got unexpected non-200 response", response);
-            }
-
-            String responseString = EntityUtils.toString(response.getEntity());
-
-            return objectMapper.readValue(responseString, typeReference);
-        } catch (IOException e) {
-            logger.error("Error while making HTTP request", e);
-            throw e;
-        } finally {
-            if (response != null) {
-                response.close();
-            }
-        }
-    }
-
     private <T> T makeRequest(HttpUriRequest request, Class<T> clazz)
             throws ExpiredAccessTokenException, IOException
     {
@@ -146,21 +117,21 @@ public class ShlApiImpl implements ShlApi {
 
         if (teamIds != null) {
             for (TeamId teamId : teamIds) {
-                requestBuilder.addParameter("teamIds[]", teamId.valueOf());
+                requestBuilder.addParameter("teamIds", teamId.valueOf());
             }
         }
 
         HttpUriRequest request = requestBuilder.build();
-        List<Game> deserializedResponse;
+        GameList deserializedResponse;
 
         try {
-            deserializedResponse = makeRequest(request, new TypeReference<List<Game>>() {});
+            deserializedResponse = makeRequest(request, GameList.class);
         } catch (IOException e) {
             logger.error("Error while getting games", e);
             throw new RuntimeException(e);
         }
 
-        return new GameList(deserializedResponse);
+        return deserializedResponse;
     }
 
     @Override

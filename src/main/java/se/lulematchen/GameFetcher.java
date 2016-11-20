@@ -15,7 +15,7 @@ public class GameFetcher implements Runnable {
         ApplicationDataCache data = ApplicationDataCache.getInstance();
 
         try {
-            GameList games = client.getGames(Season.fromInt(2015), TeamId.fromString("LHF"));
+            GameList games = client.getGames(Season.fromInt(2016), TeamId.fromString("LHF"));
             logger.info(String.format("Received %d games", games.getGames().size()));
             data.putGames(games);
         } catch (Exception e) {
