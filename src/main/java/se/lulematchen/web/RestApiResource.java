@@ -74,7 +74,7 @@ public class RestApiResource {
             return Response.ok(createMockGameInfo()).build();
         }
 
-        GameInfo game = ShlApiClient.getInstance().getGame(Season.fromString("2015"), GameId.fromString(gameId));
+        GameInfo game = ShlApiClient.getInstance().getGame(Season.fromString("2016"), GameId.fromString(gameId));
 
         if (game == null) {
             return Response.noContent().build();
